@@ -1,7 +1,7 @@
 <?php
 /**
- * @package Niouseo
- * @subpackage NiouseoHtmlTag
+ * @package Common
+ * @subpackage HtmlTag
  * @author Mikaël DELSOL
  * @copyright Mikaël DELSOL
  * @version 1.0

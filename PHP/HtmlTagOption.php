@@ -32,17 +32,6 @@ class HtmlTagOption extends HtmlTag
 		parent::__construct(HtmlTagOption::__tagName());
 	}
 	/**
-	 * Méthode permettant de définir la valeur de l'attribut value de l'option
-	 * 
-	 * @uses HtmlTag::addAttribute()
-	 * @param scalar la valeur
-	 * @return bool true|false
-	 */
-	public function setValAttr($_value)
-	{
-		return $this->addAttribute('value',$_value,true);
-	}
-	/**
 	 * Méthode permettant d'indiquer que l'option est séléctionnée
 	 *
 	 * @uses HtmlTag::addAttribute
@@ -63,6 +52,57 @@ class HtmlTagOption extends HtmlTag
 	public function unsetSelected()
 	{
 		return $this->unsetAttribute('selected');
+	}
+	/**
+	 * Surcharge de la méthode afin de forcer al définition dl'attribut value et non pas la valeur innerHTML
+	 * si c'est l'attribut value qui est passé en paramètre
+	 * @see HtmlTag::addAttribute()
+	 * 
+	 * @param string valeur de l'attribut HtmlTag
+	 * @param mixed|HtmlTag valeur de l'élément HtmlTag
+	 * @param bool appel depuis une méthode de HtmlTag pour définir un attribut spécifique
+	 * @return bool true|false selon la validité de l'attribut
+	 */
+	public function addAttribute($_attributeName,$_attributeValue,$_specificAttributeMethodCall = false)
+	{
+		return parent::addAttribute($_attributeName,$_attributeValue,$_specificAttributeMethodCall || ($_attributeName == 'value'));
+	}
+	/**
+	 * Surcharge de la méthode afin de forcer al définition dl'attribut value et non pas la valeur innerHTML
+	 * si c'est l'attribut value qui est passé en paramètre
+	 * @see HtmlTag::addAttributes()
+	 *
+	 * @uses HtmlTag::addAttribute()
+	 * @param array les attributs de l'élément HTML
+	 * @return bool true|false selon la validité de l'attribut
+	 */
+	public function addAttributes(array $_attributes)
+	{
+		$return = true;
+		if(count($_attributes) > 0)
+		{
+			while(list($attrName,$attrValue) = each($_attributes))
+			{
+				if(is_scalar($attrName))
+				{
+					$setAttr = 'set' . ucfirst($attrName);
+					/**
+					 * Méthode set{Attribute} définie ? => on l'utilise si la valeur est bien une chaine de caractères,
+					 * sinon on passe par la méthode générique addAttribute()
+					 */
+					if(method_exists($this,$setAttr) && $setAttr != 'setValue')
+						$return &= $this->$setAttr($attrValue)?true:false;
+					/**
+					 * Sinon méthode générique d'ajout d'attribut à l'élément
+					 */
+					else
+						$return &= $this->addAttribute($attrName,$attrValue)?true:false;
+				}
+				else
+					$return &= false;
+			}
+		}
+		return $return;
 	}
 	/**
 	 * Méthode retournant le nom du tag de la classe

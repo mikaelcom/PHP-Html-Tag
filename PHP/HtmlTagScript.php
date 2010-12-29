@@ -44,7 +44,7 @@ class HtmlTagScript extends HtmlTag
 	 */
 	public function setSrc($_src)
 	{
-		return $this->addAttribute('src',$_src,true);
+		return $this->addAttribute('src',trim($_src),true);
 	}
 	/**
 	 * Méthode permettant de récupérer l'attribut 'src' de l'élément HtmlTag
@@ -75,7 +75,7 @@ class HtmlTagScript extends HtmlTag
 	 */
 	public function setCharset($_charset)
 	{
-		return $this->addAttribute('charset',$_charset,true);
+		return $this->addAttribute('charset',trim($_charset),true);
 	}
 	/**
 	 * Méthode permettant de récupérer l'attribut 'charset' de l'élément HtmlTag

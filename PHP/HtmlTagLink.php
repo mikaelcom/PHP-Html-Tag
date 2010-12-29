@@ -39,7 +39,7 @@ class HtmlTagLink extends HtmlTag
 	 */
 	public function setRel($_ref)
 	{
-		return $this->addAttribute('rel',$_ref,true);
+		return $this->addAttribute('rel',trim($_ref),true);
 	}
 	/**
 	 * Méthode permettant de récupérer l'attribut 'href' de l'élément HtmlTag
@@ -70,7 +70,7 @@ class HtmlTagLink extends HtmlTag
 	 */
 	public function setHref($_href)
 	{
-		return $this->setValue($_href);
+		return $this->setValue(trim($_href));
 	}
 	/**
 	 * Méthode permettant de récupérer l'attribut 'href' de l'élément HtmlTag

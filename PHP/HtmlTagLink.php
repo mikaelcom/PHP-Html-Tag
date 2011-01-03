@@ -1,6 +1,7 @@
 <?php
 /**
- * Classe mère pour toute classe permettant de générer des champs de type link
+ * Classe mère permettant de générer un élément HTML de type link
+ * Root class to generate a link element
  * @package Common
  * @subpackage HtmlTag
  * @author Mikaël DELSOL
@@ -9,7 +10,8 @@
  * @date 28/06/2010
  */
 /**
- * Classe mère pour toute classe permettant de générer des champs de type link
+ * Classe mère permettant de générer un élément HTML de type link
+ * Root class to generate a link element
  * @package Common
  * @subpackage HtmlTag
  * @author Mikaël DELSOL
@@ -20,7 +22,7 @@
 class HtmlTagLink extends HtmlTag
 {
 	/**
-	 * Constructeur de la classe
+	 * Constructeur de la classe / Class constructor
 	 * @see parent::__construct()
 	 * 
 	 * @uses HtmlTagLink::__tagName()
@@ -32,6 +34,7 @@ class HtmlTagLink extends HtmlTag
 	}
 	/**
 	 * Méthode permettant de définir l'attribut 'href' de l'élément HtmlTag
+	 * Method to set rel attribute value
 	 *
 	 * @uses HtmlTag::addAttribute()
 	 * @param string la valeur de rel
@@ -43,6 +46,7 @@ class HtmlTagLink extends HtmlTag
 	}
 	/**
 	 * Méthode permettant de récupérer l'attribut 'href' de l'élément HtmlTag
+	 * Method to get rel attribute value
 	 *
 	 * @uses HtmlTag::getAttribute()
 	 * @return string|null
@@ -53,6 +57,7 @@ class HtmlTagLink extends HtmlTag
 	}
 	/**
 	 * Méthode permettant de supprimer l'attribut 'rel' de l'élément HtmlTag
+	 * Method to unset rel attribute value
 	 *
 	 * @uses HtmlTag::removeAttribute()
 	 * @return bool true|false
@@ -63,6 +68,7 @@ class HtmlTagLink extends HtmlTag
 	}
 	/**
 	 * Méthode permettant de définir l'attribut 'href' de l'élément HtmlTag
+	 * Method to set href attribute value
 	 *
 	 * @uses HtmlTag::setValue()
 	 * @param string la valeur de href
@@ -74,6 +80,7 @@ class HtmlTagLink extends HtmlTag
 	}
 	/**
 	 * Méthode permettant de récupérer l'attribut 'href' de l'élément HtmlTag
+	 * Method to get href attribute value
 	 *
 	 * @uses HtmlTag::getAttribute()
 	 * @return bool true|false
@@ -84,6 +91,7 @@ class HtmlTagLink extends HtmlTag
 	}
 	/**
 	 * Méthode permettant de supprimer l'attribut 'href' de l'élément HtmlTag
+	 * Method to unset href attribute value
 	 *
 	 * @uses HtmlTag::removeAttribute()
 	 * @return bool true|false
@@ -94,6 +102,7 @@ class HtmlTagLink extends HtmlTag
 	}
 	/**
 	 * Méthode retournant le nom du tag de la classe
+	 * Method returning the tag name
 	 *
 	 * @return string link
 	 */
@@ -103,6 +112,7 @@ class HtmlTagLink extends HtmlTag
 	}
 	/**
 	 * Méthode retournant le nom de la classe telle quelle
+	 * Method returning the class name
 	 *
 	 * @return string __CLASS__
 	 */

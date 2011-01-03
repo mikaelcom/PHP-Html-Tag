@@ -1,6 +1,7 @@
 <?php
 /**
- * Classe mère pour toute classe permettant de générer des formulaires
+ * Classe mère permettant de générer des formulaires
+ * Root class to generate a form element
  * @package Common
  * @subpackage HtmlTag
  * @author Mikaël DELSOL
@@ -9,7 +10,8 @@
  * @date 20/12/2009
  */
 /**
- * Classe mère pour toute classe permettant de générer des formulaires
+ * Classe mère permettant de générer des formulaires
+ * Root class to generate a form element
  * @package Common
  * @subpackage HtmlTag
  * @author Mikaël DELSOL
@@ -30,15 +32,15 @@ class HtmlTagForm extends HtmlTag
 	 */
 	const GET = 'get';
 	/**
-	 * Constructeur de la classe
+	 * Constructeur de la classe / Class constructor
 	 * @see parent::__construct()
 	 * 
 	 * @uses HtmlTagForm::__tagName()
 	 * @uses HtmlTag::addAttributes()
 	 * @uses HtmlTag::addAttribute()
-	 * @param string l'action du formulaire
-	 * @param string la méthode de transmission des données des champs
-	 * @param string le type des données transmises
+	 * @param string l'action du formulaire / value of form action
+	 * @param string la méthode de transmission des données un élément HTML value of form submission method (post or get)
+	 * @param string le type des données transmises / from enctype value
 	 * @return HtmlTagForm
 	 */
 	public function __construct($_action = '#',$_method = self::POST,$_enctype = 'multipart/form-data')
@@ -50,6 +52,7 @@ class HtmlTagForm extends HtmlTag
 	}
 	/**
 	 * Méthode permettant d'ajouter un élément au formulaire
+	 * Specific method to add field to the current form
 	 *
 	 * @uses HtmlTag::setValue()
 	 * @uses HtmlTag::addValue()
@@ -69,6 +72,7 @@ class HtmlTagForm extends HtmlTag
 	}
 	/**
 	 * Méthode retournant le nom du tag de la classe
+	 * Method returning the tag name
 	 *
 	 * @return string form
 	 */
@@ -78,6 +82,7 @@ class HtmlTagForm extends HtmlTag
 	}
 	/**
 	 * Méthode retournant le nom de la classe telle quelle
+	 * Method returning the class name
 	 *
 	 * @return string __CLASS__
 	 */

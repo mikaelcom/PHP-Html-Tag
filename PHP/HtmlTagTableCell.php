@@ -1,6 +1,7 @@
 <?php
 /**
- * Classe mère pour toute classe permettant de générer des cellules d'une ligne d'un tableau HtmlTag
+ * Classe mère permettant de générer des cellules d'une ligne d'un tableau HtmlTag
+ * Root class to generate a table cell element as td or th
  * @package Common
  * @subpackage HtmlTag
  * @author Mikaël DELSOL
@@ -9,7 +10,8 @@
  * @date 15/12/2009
  */
 /**
- * Classe mère pour toute classe permettant de générer des cellules d'une ligne d'un tableau HtmlTag
+ * Classe mère permettant de générer des cellules d'une ligne d'un tableau HtmlTag
+ * Root class to generate a table cell element as td or th
  * @package Common
  * @subpackage HtmlTag
  * @author Mikaël DELSOL
@@ -21,20 +23,22 @@ class HtmlTagTableCell extends HtmlTag
 {
 	/**
 	 * Nom du tag pour une cellule du thead du tableau
+	 * Tag name for a thead cell
 	 * @var string
 	 */
 	const TH = 'th';
 	/**
 	 * Nom du tag pour une cellule du tbody/tfoot du tableau
+	 * Tag name for a tbody/tfoot cell
 	 * @var string
 	 */
 	const TD = 'td';
 	/**
-	 * Constructeur de la classe
+	 * Constructeur de la classe / Class constructor
 	 * @see parent::__construct()
 	 *
 	 * @uses HtmlTagTableCell::__className()
-	 * @param string type de la cellule
+	 * @param string type de la cellule / type of he cell (th or td)
 	 * @return HtmlTagTableCell
 	 */
 	public function __construct($_cellType = self::TD)
@@ -44,6 +48,7 @@ class HtmlTagTableCell extends HtmlTag
 	}
 	/**
 	 * Méthode permettant de définir l'attribut 'colspan' de l'élément HtmlTag
+	 * Method to set colspan attribute value
 	 *
 	 * @uses HtmlTagTableCell::addAttribute()
 	 * @param string la valeur de colspan
@@ -55,6 +60,7 @@ class HtmlTagTableCell extends HtmlTag
 	}
 	/**
 	 * Méthode permettant de récupérer l'attribut 'colspan' de l'élément HtmlTag
+	 * Method to get colspan attribute value
 	 *
 	 * @uses HtmlTag::getAttribute()
 	 * @return string|null
@@ -65,6 +71,7 @@ class HtmlTagTableCell extends HtmlTag
 	}
 	/**
 	 * Méthode permettant de supprimer l'attribut 'colspan' de l'élément HtmlTag
+	 * Method to unset colspan attribute value
 	 *
 	 * @uses HtmlTag::unsetAttribute()
 	 * @return string|null
@@ -75,6 +82,7 @@ class HtmlTagTableCell extends HtmlTag
 	}
 	/**
 	 * Méthode permettant de définir l'attribut 'rowspan' de l'élément HtmlTag
+	 * Method to set rowspan attribute value
 	 *
 	 * @uses HtmlTagTableCell::addAttribute()
 	 * @param string la valeur de rowspan
@@ -86,6 +94,7 @@ class HtmlTagTableCell extends HtmlTag
 	}
 	/**
 	 * Méthode permettant de récupérer l'attribut 'rowspan' de l'élément HtmlTag
+	 * Method to get rowspan attribute value
 	 *
 	 * @uses HtmlTag::getAttribute()
 	 * @return string|null
@@ -96,6 +105,7 @@ class HtmlTagTableCell extends HtmlTag
 	}
 	/**
 	 * Méthode permettant de supprimer l'attribut 'rowspan' de l'élément HtmlTag
+	 * Method to unset rowspan attribute value
 	 *
 	 * @uses HtmlTag::unsetAttribute()
 	 * @return string|null
@@ -106,16 +116,17 @@ class HtmlTagTableCell extends HtmlTag
 	}
 	/**
 	 * Gestion des particuliers d'attributs
+	 * Specific cases management
 	 * @see HtmlTag::addAttribute()
 	 *
 	 * @param string nom de l'attribut
-	 * @param scalar valeur de l'attribut
-	 * @param bool appel depuis une méthode de HtmlTag pour définir un attribut spécifique
+	 * @param scalar valeur de l'attribut / attribte value
+	 * @param bool appel depuis une méthode de HtmlTag pour définir un attribut spécifique / true if the method calling is the attribute method
 	 * @return bool true|false
 	 */
-	public function addAttribute($_attributeName,$_attributeValue,$_specificAttributeMethodCall = false)
+	public function addAttribute($_attributeName, $_attributeValue, $_specificAttributeMethodCall = false)
 	{
-		switch($_attributeName)
+		switch ($_attributeName)
 		{
 			case 'colspan':
 			case 'rowspan':
@@ -128,6 +139,7 @@ class HtmlTagTableCell extends HtmlTag
 	}
 	/**
 	 * Méthode retournant le nom du tag de la classe
+	 * Method returning the list of possible tag names
 	 *
 	 * @uses HtmlTagTableCell::TH
 	 * @uses HtmlTagTableCell::TD
@@ -139,6 +151,7 @@ class HtmlTagTableCell extends HtmlTag
 	}
 	/**
 	 * Méthode retournant le nom de la classe telle quelle
+	 * Method returning the class name
 	 *
 	 * @return string __CLASS__
 	 */

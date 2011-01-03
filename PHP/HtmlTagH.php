@@ -1,6 +1,7 @@
 <?php
 /**
- * Classe mère pour toute classe permettant de générer des champs de type h*
+ * Classe mère permettant de générer un élément HTML de type h*
+ * Root class to generate a heading title element
  * @package Common
  * @subpackage HtmlTag
  * @author Mikaël DELSOL
@@ -9,7 +10,8 @@
  * @date 06/07/2010
  */
 /**
- * Classe mère pour toute classe permettant de générer des champs de type h*
+ * Classe mère permettant de générer un élément HTML de type h*
+ * Root class to generate a heading title element
  * @package Common
  * @subpackage HtmlTag
  * @author Mikaël DELSOL
@@ -50,7 +52,7 @@ class HtmlTagH extends HtmlTag
 	 */
 	const H6 = 'h6';
 	/**
-	 * Constructeur de la classe
+	 * Constructeur de la classe / Class constructor
 	 * @see parent::__construct()
 	 * 
 	 * @uses HtmlTagH::__className()
@@ -63,6 +65,7 @@ class HtmlTagH extends HtmlTag
 	}
 	/**
 	 * Méthode retournant le nom du tag de la classe
+	 * Method returning the list of the possible tags name
 	 *
 	 * @uses HtmlTagH::H1
 	 * @uses HtmlTagH::H2
@@ -78,6 +81,7 @@ class HtmlTagH extends HtmlTag
 	}
 	/**
 	 * Méthode retournant le nom de la classe telle quelle
+	 * Method returning the class name
 	 *
 	 * @return string __CLASS__
 	 */

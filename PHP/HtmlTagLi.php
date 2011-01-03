@@ -1,6 +1,7 @@
 <?php
 /**
- * Classe mère pour toute classe permettant de générer des éléments d'un ul/ol HtmlTag
+ * Classe mère permettant de générer des éléments d'un ul/ol HtmlTag
+ * Root class to generate a li element
  * @package Common
  * @subpackage HtmlTag
  * @author Mikaël DELSOL
@@ -9,7 +10,8 @@
  * @date 16/12/2009
  */
 /**
- * Classe mère pour toute classe permettant de générer des éléments d'un ul/ol HtmlTag
+ * Classe mère permettant de générer des éléments d'un ul/ol HtmlTag
+ * Root class to generate a li element
  * @package Common
  * @subpackage HtmlTag
  * @author Mikaël DELSOL
@@ -20,7 +22,7 @@
 class HtmlTagLi extends HtmlTag
 {
 	/**
-	 * Constructeur de la classe
+	 * Constructeur de la classe / Class constructor
 	 * @see parent::__construct()
 	 * 
 	 * @uses HtmlTagLi::__tagName()
@@ -32,6 +34,7 @@ class HtmlTagLi extends HtmlTag
 	}
 	/**
 	 * Méthode retournant le nom du tag de la classe
+	 * Method returning the tag name
 	 *
 	 * @return string li
 	 */
@@ -41,6 +44,7 @@ class HtmlTagLi extends HtmlTag
 	}
 	/**
 	 * Méthode retournant le nom de la classe telle quelle
+	 * Method returning the class name
 	 *
 	 * @return string __CLASS__
 	 */

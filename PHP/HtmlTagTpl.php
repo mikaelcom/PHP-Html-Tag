@@ -27,16 +27,15 @@ class HtmlTagTpl extends HtmlTag
 	 */
 	private $variables;
 	/**
-	 * Constructeur de la classe
+	 * Constructeur de la classe / Class constructor
 	 * @see parent::__construct()
 	 * 
 	 * @uses HtmlTagTpl::setVariables()
 	 * @uses HtmlTagTpl::getVariables()
-	 * @param string nom du tag HTML
-	 * @param bool indque que tout attribut HTML doit être considéré comme valide pour le template ou seulement ceux par défaut
+	 * @param string nom du tag HTML principale de l'objet en cours / tag name (OPTIONAL)
 	 * @return HtmlTagP
 	 */
-	public function __construct($_tagName = '', $_allTplTags = false)
+	public function __construct($_tagName = '')
 	{
 		parent::__construct($_tagName);
 		/**
@@ -47,6 +46,7 @@ class HtmlTagTpl extends HtmlTag
 	}
 	/**
 	 * Méthode de génération du contenu HTML avec remplacement des variables par leur valeur
+	 * Method to call when all variables have been set
 	 * 
 	 * @uses HtmlTagTpl::getVariablesKeys()
 	 * @uses HtmlTagTpl::getVariablesValues()
@@ -104,6 +104,7 @@ class HtmlTagTpl extends HtmlTag
 	}
 	/**
 	 * Retourne toutes les clefs
+	 * Method to get all variable keys
 	 * 
 	 * @uses HtmlTagTpl::getVariables()
 	 * @return array
@@ -114,6 +115,7 @@ class HtmlTagTpl extends HtmlTag
 	}
 	/**
 	 * Retourne toutes les valeurs
+	 * Method to get all variable values
 	 * 
 	 * @uses HtmlTagTpl::getVariables()
 	 * @return array
@@ -123,6 +125,9 @@ class HtmlTagTpl extends HtmlTag
 		return array_values($this->getVariables());
 	}
 	/**
+	 * Méthode pour définir les variables d'un coup
+	 * Method to set at once all the variables
+	 * 
 	 * @param array
 	 * @return array
 	 */
@@ -132,6 +137,7 @@ class HtmlTagTpl extends HtmlTag
 	}
 	/**
 	 * Méthode permettant de supprimer toutes les variables déjà définies
+	 * Method to unset all variables
 	 * 
 	 * @uses HtmlTagTpl::setVariables()
 	 * @param array
@@ -145,10 +151,11 @@ class HtmlTagTpl extends HtmlTag
 	 * Méthode permettant de définir la valeur d'une variable
 	 * L'ajout des sauts de ligne \r\n permet lors d'ajout de contenu d'un autre template dans un nouveau template d'être considéré
 	 * comme un contenu à part entière contenant également des balises
+	 * Method to add one variable to the variables
 	 * 
-	 * @param string nom de la variable
-	 * @param mixed valeur de la variable
-	 * @param bool indique qu'il faut ou non ajouter les accolades {} en début et fin de nom de variable
+	 * @param string nom de la variable / variable name
+	 * @param mixed valeur de la variable / variable value
+	 * @param bool indique qu'il faut ou non ajouter les accolades {} en début et fin de nom de variable / add brackets ({ and}) automatically and the begginning and the end of the variable name
 	 * @return mixed
 	 */
 	public function setVariable($_name, $_value, $_addBrackets = true)
@@ -157,10 +164,11 @@ class HtmlTagTpl extends HtmlTag
 	}
 	/**
 	 * Méthode permettant d'ajouter un ensemble de clef associées à leur valeur
+	 * Method to add an array of vairables at once to the current variables
 	 * 
 	 * @uses HtmlTagTpl::setVariable()
-	 * @param array name=>valuemixed valeur de la variable
-	 * @param bool indique qu'il faut ou non ajouter les accolades {} en début et fin de nom de variable
+	 * @param array name=>valuemixed valeur de la variable / associative array of variable names and variables values
+	 * @param bool indique qu'il faut ou non ajouter les accolades {} en début et fin de nom de variable / add brackets ({ and}) automatically and the begginning and the end of each variables name
 	 * @return bool true
 	 */
 	public function setVariablesArray(array $_variables, $_addBrackets = true)
@@ -171,28 +179,33 @@ class HtmlTagTpl extends HtmlTag
 	}
 	/**
 	 * Méthode permettant de récupérer la valeur d'une variable
+	 * Method to get a variable value
 	 * 
 	 * @uses HtmlTagTpl::hasVariable()
-	 * @param string nom de la variable
+	 * @param string nom de la variable / variable name
+	 * @param bool indique qu'il faut ou non ajouter les accolades {} en début et fin de nom de variable / add brackets ({ and}) automatically and the begginning and the end of each variables name
 	 * @return mixed|null
 	 */
-	public function getVariable($_name)
+	public function getVariable($_name, $_addBrackets = true)
 	{
-		return $this->hasVariable($_name)?$this->variables[$_name]:null;
+		return $this->hasVariable($_name,$_addBrackets)?$this->variables[($_addBrackets?'{':'') . $_name . ($_addBrackets?'}':'')]:null;
 	}
 	/**
 	 * Méthode permettant de tester l'existence d'une variable
+	 * Method to test the variable presence
 	 * 
 	 * @uses HtmlTagTpl::getVariables()
-	 * @param string nom de la variable
+	 * @param string nom de la variable / variable name
+	 * @param bool indique qu'il faut ou non ajouter les accolades {} en début et fin de nom de variable / add brackets ({ and}) automatically and the begginning and the end of each variables name
 	 * @return mixed|null
 	 */
-	public function hasVariable($_name)
+	public function hasVariable($_name, $_addBrackets = true)
 	{
-		return array_key_exists($_name,$this->getVariables());
+		return array_key_exists(($_addBrackets?'{':'') . $_name . ($_addBrackets?'}':''),$this->getVariables());
 	}
 	/**
 	 * Méthode retournant le nom de la classe telle quelle
+	 * Method returning the class name
 	 *
 	 * @return string __CLASS__
 	 */

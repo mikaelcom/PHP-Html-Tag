@@ -1,6 +1,7 @@
 <?php
 /**
- * Classe mère pour toute classe permettant de générer des champs de type script
+ * Classe mère permettant de générer un élément HTML de type script
+ * Root class to generate a script element
  * @package Common
  * @subpackage HtmlTag
  * @author Mikaël DELSOL
@@ -9,7 +10,8 @@
  * @date 29/06/2010
  */
 /**
- * Classe mère pour toute classe permettant de générer des champs de type script
+ * Classe mère permettant de générer un élément HTML de type script
+ * Root class to generate a script element
  * @package Common
  * @subpackage HtmlTag
  * @author Mikaël DELSOL
@@ -20,7 +22,7 @@
 class HtmlTagScript extends HtmlTag
 {
 	/**
-	 * Constructeur de la classe
+	 * Constructeur de la classe / Class constructor
 	 * @see parent::__construct()
 	 * 
 	 * @uses HtmlTagScript::__tagName()
@@ -37,6 +39,7 @@ class HtmlTagScript extends HtmlTag
 	}
 	/**
 	 * Méthode permettant de définir l'attribut 'src' de l'élément HtmlTag
+	 * Method to set src attribute value
 	 *
 	 * @uses HtmlTag::addAttribute()
 	 * @param string la valeur de src
@@ -48,6 +51,7 @@ class HtmlTagScript extends HtmlTag
 	}
 	/**
 	 * Méthode permettant de récupérer l'attribut 'src' de l'élément HtmlTag
+	 * Method to get src attribute value
 	 *
 	 * @uses HtmlTag::getAttribute()
 	 * @return string|null
@@ -58,6 +62,7 @@ class HtmlTagScript extends HtmlTag
 	}
 	/**
 	 * Méthode permettant de supprimer l'attribut 'src' de l'élément HtmlTag
+	 * Method to unset src attribute value
 	 *
 	 * @uses HtmlTag::unsetAttribute()
 	 * @return string|null
@@ -68,6 +73,7 @@ class HtmlTagScript extends HtmlTag
 	}
 	/**
 	 * Méthode permettant de définir l'attribut 'charset' de l'élément HtmlTag
+	 * Method to set charset attribute value
 	 *
 	 * @uses HtmlTag::addAttribute()
 	 * @param string la valeur de charset
@@ -79,6 +85,7 @@ class HtmlTagScript extends HtmlTag
 	}
 	/**
 	 * Méthode permettant de récupérer l'attribut 'charset' de l'élément HtmlTag
+	 * Method to get charset attribute value
 	 *
 	 * @uses HtmlTag::getAttribute()
 	 * @return string|null
@@ -89,6 +96,7 @@ class HtmlTagScript extends HtmlTag
 	}
 	/**
 	 * Méthode permettant de supprimer l'attribut 'charset' de l'élément HtmlTag
+	 * Method to unset charset attribute value
 	 *
 	 * @uses HtmlTag::unsetAttribute()
 	 * @return string|null
@@ -99,6 +107,7 @@ class HtmlTagScript extends HtmlTag
 	}
 	/**
 	 * Méthode retournant le nom du tag de la classe
+	 * Method returning the tag name
 	 *
 	 * @return string script
 	 */
@@ -118,6 +127,7 @@ class HtmlTagScript extends HtmlTag
 	}
 	/**
 	 * Méthode retournant le nom de la classe telle quelle
+	 * Method returning the class name
 	 *
 	 * @return string __CLASS__
 	 */

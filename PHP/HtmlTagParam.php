@@ -1,6 +1,7 @@
 <?php
 /**
- * Classe mère pour toute classe permettant de générer des champs de type param
+ * Classe mère permettant de générer un élément HTML de type param
+ * Root class to generate a param element
  * @package Common
  * @subpackage HtmlTag
  * @author Mikaël DELSOL
@@ -9,7 +10,8 @@
  * @date 07/07/2010
  */
 /**
- * Classe mère pour toute classe permettant de générer des champs de type param
+ * Classe mère permettant de générer un élément HTML de type param
+ * Root class to generate a param element
  * @package Common
  * @subpackage HtmlTag
  * @author Mikaël DELSOL
@@ -20,7 +22,7 @@
 class HtmlTagParam extends HtmlTag
 {
 	/**
-	 * Constructeur de la classe
+	 * Constructeur de la classe / Class constructor
 	 * @see parent::__construct()
 	 * 
 	 * @uses HtmlTagParam::__tagName()
@@ -32,11 +34,12 @@ class HtmlTagParam extends HtmlTag
 	}
 	/**
 	 * Méthode permettant de définir l'élément param (name/value)
+	 * Method to define a couple information for the current object
 	 * 
 	 * @uses HtmlTag::setName()
 	 * @uses HtmlTag::setValue()
-	 * @param string nom du paramètre
-	 * @param scalar valeur du paramètre
+	 * @param string nom du paramètre / parameter name
+	 * @param scalar valeur du paramètre / parameter value
 	 * @return bool true|false
 	 */
 	public function defineParamValue($_paramName,$_paramValue)
@@ -48,6 +51,7 @@ class HtmlTagParam extends HtmlTag
 	}
 	/**
 	 * Méthode retournant le nom du tag de la classe
+	 * Method returning the tag name
 	 *
 	 * @return string param
 	 */
@@ -57,6 +61,7 @@ class HtmlTagParam extends HtmlTag
 	}
 	/**
 	 * Méthode retournant le nom de la classe telle quelle
+	 * Method returning the class name
 	 *
 	 * @return string __CLASS__
 	 */

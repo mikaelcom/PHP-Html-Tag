@@ -1,6 +1,7 @@
 <?php
 /**
  * Autoload du module HtmlTag
+ * HtmlTag classes Autoload
  * @package Common
  * @subpackage HtmlTag
  * @author Mikaël DELSOL
@@ -22,6 +23,7 @@ require_once HTML_TAG_PHP_PATH . 'HtmlTagBig.php';
 require_once HTML_TAG_PHP_PATH . 'HtmlTagBlockquote.php';
 require_once HTML_TAG_PHP_PATH . 'HtmlTagBody.php';
 require_once HTML_TAG_PHP_PATH . 'HtmlTagBr.php';
+require_once HTML_TAG_PHP_PATH . 'HtmlTagButton.php';
 require_once HTML_TAG_PHP_PATH . 'HtmlTagCaption.php';
 require_once HTML_TAG_PHP_PATH . 'HtmlTagCite.php';
 require_once HTML_TAG_PHP_PATH . 'HtmlTagCode.php';

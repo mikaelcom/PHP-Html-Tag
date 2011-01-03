@@ -1,6 +1,7 @@
 <?php
 /**
- * Classe mère pour toute classe permettant de générer des champs de type textarea
+ * Classe mère permettant de générer un élément HTML de type textarea
+ * Root class to generate a textarea element
  * @package Common
  * @subpackage HtmlTag
  * @author Mikaël DELSOL
@@ -9,7 +10,8 @@
  * @date 20/12/2009
  */
 /**
- * Classe mère pour toute classe permettant de générer des champs de type textarea
+ * Classe mère permettant de générer un élément HTML de type textarea
+ * Root class to generate a textarea element
  * @package Common
  * @subpackage HtmlTag
  * @author Mikaël DELSOL
@@ -20,7 +22,7 @@
 class HtmlTagTextarea extends HtmlTag
 {
 	/**
-	 * Constructeur de la classe
+	 * Constructeur de la classe / Class constructor
 	 * @see parent::__construct()
 	 * 
 	 * @uses HtmlTag::setValue()
@@ -37,6 +39,7 @@ class HtmlTagTextarea extends HtmlTag
 	}
 	/**
 	 * Méthode permettant de définir l'attribut rows
+	 * Method to set rows attribute value
 	 *
 	 * @uses HtmlTag::addAttribute()
 	 * @param int
@@ -47,6 +50,7 @@ class HtmlTagTextarea extends HtmlTag
 	}
 	/**
 	 * Méthode permettant de récupérer l'attribut rows
+	 * Method to get rows attribute value
 	 *
 	 * @uses HtmlTag::getAttribute()
 	 * @return int
@@ -57,6 +61,7 @@ class HtmlTagTextarea extends HtmlTag
 	}
 	/**
 	 * Méthode permettant de supprimer l'attribut rows
+	 * Method to unset rows attribute value
 	 *
 	 * @uses HtmlTag::unsetAttribute()
 	 * @return bool true|false
@@ -67,6 +72,7 @@ class HtmlTagTextarea extends HtmlTag
 	}
 	/**
 	 * Méthode permettant de définir l'attribut cols
+	 * Method to set cols attribute value
 	 *
 	 * @uses HtmlTag::addAttribute()
 	 * @param int
@@ -77,6 +83,7 @@ class HtmlTagTextarea extends HtmlTag
 	}
 	/**
 	 * Méthode permettant de récupérer l'attribut cols
+	 * Method to get cols attribute value
 	 *
 	 * @uses HtmlTag::getAttribute()
 	 * @return int
@@ -87,6 +94,7 @@ class HtmlTagTextarea extends HtmlTag
 	}
 	/**
 	 * Méthode permettant de supprimer l'attribut cols
+	 * Method to unset cols attribute value
 	 *
 	 * @uses HtmlTag::unsetAttribute()
 	 * @return bool true|false
@@ -97,6 +105,7 @@ class HtmlTagTextarea extends HtmlTag
 	}
 	/**
 	 * Gestion des particuliers d'attributs
+	 * Override method to secure attributes definition
 	 * @see HtmlTag::addAttribute()
 	 *
 	 * @param string nom de l'attribut
@@ -104,9 +113,9 @@ class HtmlTagTextarea extends HtmlTag
 	 * @param bool appel depuis une méthode de HtmlTag pour définir un attribut spécifique
 	 * @return bool true|false
 	 */
-	public function addAttribute($_attributeName,$_attributeValue,$_specificAttributeMethodCall = false)
+	public function addAttribute($_attributeName, $_attributeValue, $_specificAttributeMethodCall = false)
 	{
-		switch($_attributeName)
+		switch ($_attributeName)
 		{
 			case 'cols':
 			case 'rows':
@@ -119,6 +128,7 @@ class HtmlTagTextarea extends HtmlTag
 	}
 	/**
 	 * Méthode retournant le nom du tag de la classe
+	 * Method returning the tag name
 	 *
 	 * @return string textarea
 	 */
@@ -128,6 +138,7 @@ class HtmlTagTextarea extends HtmlTag
 	}
 	/**
 	 * Méthode retournant le nom de la classe telle quelle
+	 * Method returning the class name
 	 *
 	 * @return string __CLASS__
 	 */

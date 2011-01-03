@@ -1,6 +1,7 @@
 <?php
 /**
- * Classe mère pour toute classe permettant de générer un élément ul/ol HtmlTag
+ * Classe mère permettant de générer un élément ul/ol HtmlTag
+ * Root class to generate a list element as ol or ul
  * @package Common
  * @subpackage HtmlTag
  * @author Mikaël DELSOL
@@ -9,7 +10,8 @@
  * @date 16/12/2009
  */
 /**
- * Classe mère pour toute classe permettant de générer un élément ul/ol HtmlTag
+ * Classe mère permettant de générer un élément ul/ol HtmlTag
+ * Root class to generate a list element as ol or ul
  * @package Common
  * @subpackage HtmlTag
  * @author Mikaël DELSOL
@@ -30,7 +32,7 @@ class HtmlTagList extends HtmlTag
 	 */
 	const UL = 'ul';
 	/**
-	 * Constructeur de la classe
+	 * Constructeur de la classe / Class constructor
 	 * @see parent::__construct()
 	 * 
 	 * @uses HtmlTagList::__className()
@@ -43,6 +45,7 @@ class HtmlTagList extends HtmlTag
 	}
 	/**
 	 * Méthode permettant d'ajouter une option au list
+	 * Method to add list item element
 	 *
 	 * @uses HtmlTag::addValue()
 	 * @param HtmlTagLi
@@ -53,6 +56,7 @@ class HtmlTagList extends HtmlTag
 	}
 	/**
 	 * Méthode permettant de facilement ajouter un élément à la liste
+	 * Method to create list item element
 	 *
 	 * @uses HtmlTag::setValue()
 	 * @uses HtmlTag::addAttributes()
@@ -60,7 +64,7 @@ class HtmlTagList extends HtmlTag
 	 * @param mixed
 	 * @param array
 	 */
-	public function createListItem($_content,array $_attributes = array())
+	public function createListItem($_content, array $_attributes = array())
 	{
 		$htmlListItem = new HtmlTagLi();
 		$htmlListItem->setValue($_content);
@@ -70,6 +74,7 @@ class HtmlTagList extends HtmlTag
 	}
 	/**
 	 * Méthode retournant le nom du tag de la classe
+	 * Method returning the list of possible tag names
 	 *
 	 * @uses HtmlTagList::OL
 	 * @uses HtmlTagList::UL
@@ -81,6 +86,7 @@ class HtmlTagList extends HtmlTag
 	}
 	/**
 	 * Méthode retournant le nom de la classe telle quelle
+	 * Method returning the class name
 	 *
 	 * @return string __CLASS__
 	 */

@@ -1,6 +1,7 @@
 <?php
 /**
- * Classe mère pour toute classe permettant de générer un élément select HtmlTag
+ * Classe mère permettant de générer un élément select HtmlTag
+ * Root class to generate a select element
  * @package Common
  * @subpackage HtmlTag
  * @author Mikaël DELSOL
@@ -9,7 +10,8 @@
  * @date 16/12/2009
  */
 /**
- * Classe mère pour toute classe permettant de générer un élément select HtmlTag
+ * Classe mère permettant de générer un élément select HtmlTag
+ * Root class to generate a select element
  * @package Common
  * @subpackage HtmlTag
  * @author Mikaël DELSOL
@@ -20,7 +22,7 @@
 class HtmlTagSelect extends HtmlTag
 {
 	/**
-	 * Constructeur de la classe
+	 * Constructeur de la classe / Class constructor
 	 * @see parent::__construct()
 	 * 
 	 * @uses HtmlTagSelect::__tagName()
@@ -32,6 +34,7 @@ class HtmlTagSelect extends HtmlTag
 	}
 	/**
 	 * Méthode permettant d'ajouter une option au select
+	 * Specific method to add option object
 	 *
 	 * @uses HtmlTag::addValue()
 	 * @param HtmlTagOption
@@ -42,6 +45,7 @@ class HtmlTagSelect extends HtmlTag
 	}
 	/**
 	 * Méthode permettant de simplement ajouter une option à la liste de sélection
+	 * Specific method to creation an option automatically added to the current object
 	 *
 	 * @uses HtmlTag::setValue()
 	 * @uses HtmlTag::addAttributes()
@@ -49,7 +53,7 @@ class HtmlTagSelect extends HtmlTag
 	 * @param mixed
 	 * @param array
 	 */
-	public function createOption($_content,array $_attributes = array())
+	public function createOption($_content, array $_attributes = array())
 	{
 		$htmlSelectOption = new HtmlTagOption();
 		$htmlSelectOption->setValue($_content);
@@ -59,6 +63,7 @@ class HtmlTagSelect extends HtmlTag
 	}
 	/**
 	 * On s'assure que les éléments passés au select soient bien du type option/optgroup
+	 * Override method to secure added elements
 	 * @see parent::setValue()
 	 * 
 	 * @param HtmlTagOption|HtmlTagOptgroup
@@ -70,6 +75,7 @@ class HtmlTagSelect extends HtmlTag
 	}
 	/**
 	 * Méthode retournant le nom du tag de la classe
+	 * Method returning the tag name
 	 *
 	 * @return string select
 	 */
@@ -79,6 +85,7 @@ class HtmlTagSelect extends HtmlTag
 	}
 	/**
 	 * Méthode retournant le nom de la classe telle quelle
+	 * Method returning the class name
 	 *
 	 * @return string __CLASS__
 	 */

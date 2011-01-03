@@ -1,6 +1,7 @@
 <?php
 /**
- * Classe mère pour toute classe permettant de générer des champs de type b
+ * Classe mère permettant de générer un élément HTML de type b
+ * Root class to generate a b element
  * @package Common
  * @subpackage HtmlTag
  * @author Mikaël DELSOL
@@ -9,7 +10,8 @@
  * @date 06/07/2010
  */
 /**
- * Classe mère pour toute classe permettant de générer des champs de type b
+ * Classe mère permettant de générer un élément HTML de type b
+ * Root class to generate a b element
  * @package Common
  * @subpackage HtmlTag
  * @author Mikaël DELSOL
@@ -20,7 +22,7 @@
 class HtmlTagB extends HtmlTag
 {
 	/**
-	 * Constructeur de la classe
+	 * Constructeur de la classe / Class constructor
 	 * @see parent::__construct()
 	 * 
 	 * @uses HtmlTagB::__tagName()
@@ -32,6 +34,7 @@ class HtmlTagB extends HtmlTag
 	}
 	/**
 	 * Méthode retournant le nom du tag de la classe
+	 * Method returning the tag name
 	 *
 	 * @return string b
 	 */
@@ -41,6 +44,7 @@ class HtmlTagB extends HtmlTag
 	}
 	/**
 	 * Méthode retournant le nom de la classe telle quelle
+	 * Method returning the class name
 	 *
 	 * @return string __CLASS__
 	 */

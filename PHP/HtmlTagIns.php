@@ -1,6 +1,7 @@
 <?php
 /**
- * Classe mère pour toute classe permettant de générer des champs de type ins
+ * Classe mère permettant de générer un élément HTML de type ins
+ * Root class to generate an ins element
  * @package Common
  * @subpackage HtmlTag
  * @author Mikaël DELSOL
@@ -9,7 +10,8 @@
  * @date 07/07/2010
  */
 /**
- * Classe mère pour toute classe permettant de générer des champs de type ins
+ * Classe mère permettant de générer un élément HTML de type ins
+ * Root class to generate an ins element
  * @package Common
  * @subpackage HtmlTag
  * @author Mikaël DELSOL
@@ -20,7 +22,7 @@
 class HtmlTagIns extends HtmlTag
 {
 	/**
-	 * Constructeur de la classe
+	 * Constructeur de la classe / Class constructor
 	 * @see parent::__construct()
 	 * 
 	 * @uses HtmlTagIns::__tagName()
@@ -32,6 +34,7 @@ class HtmlTagIns extends HtmlTag
 	}
 	/**
 	 * Méthode retournant le nom du tag de la classe
+	 * Method returning the tag name
 	 *
 	 * @return string ins
 	 */
@@ -41,6 +44,7 @@ class HtmlTagIns extends HtmlTag
 	}
 	/**
 	 * Méthode retournant le nom de la classe telle quelle
+	 * Method returning the class name
 	 *
 	 * @return string __CLASS__
 	 */

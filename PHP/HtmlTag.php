@@ -1,6 +1,7 @@
 <?php
 /**
- * Classe mère pour toute classe permettant de générer des éléments HtmlTag
+ * Classe mère permettant de générer des éléments HtmlTag
+ * Root class for all html tag elements
  * @package Common
  * @subpackage HtmlTag
  * @author Mikaël DELSOL
@@ -9,7 +10,8 @@
  * @date 13/12/2009
  */
 /**
- * Classe mère pour toute classe permettant de générer des éléments HtmlTag
+ * Classe mère permettant de générer des éléments HtmlTag
+ * Root class for all html tag elements
  * @link http://tmldog.com/reference/
  * @package Common
  * @subpackage HtmlTag
@@ -22,82 +24,97 @@ class HtmlTag
 {
 	/**
 	 * Défini le nom de la balise utilisé pour déifnir le contenu du doctype
+	 * Defines the root html tag name
 	 * @var string
 	 */
 	const DOCTYPE_ROOT_TAG = 'html';
 	/**
 	 * Défini la norme respectée
+	 * Defines the W3C norm
 	 * @var string
 	 */
 	const DOCTYPE_DEFINITION = '-//W3C//DTD XHTML 1.0 Strict//EN';
 	/**
 	 * Défini l'url de la DTD
+	 * Defines the DTD used
 	 * @var string
 	 */
 	const DOCTYPE_URL = 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd';
 	/**
 	 * Encodage par défaut
+	 * Defines the default encoding of the document
 	 * @var string
 	 */
 	const DEFAULT_ENCODING = 'iso-8859-1';
 	/**
 	 * Valeur du class à définir pour le premier élément d'une liste
+	 * Defined a CSS class value for the first element of a list of elements
 	 * @var string
 	 */
 	const CLASS_FIRST = 'first';
 	/**
 	 * Valeur du class à définir pour le dernier élément d'une liste
+	 * Defined a CSS class value for the last element of a list of elements
 	 * @var string
 	 */
 	const CLASS_LAST = 'last';
 	/**
 	 * Indique si la valeur de l'élément HtmlTag est de type innerHtmlTag ou définie par l'attribut value
+	 * Indicates whether the element can contain HTML tag or not
 	 * @var bool
 	 */
 	private $hasInnerHtml;
 	/**
 	 * Objet de la clase DOMElement
+	 * DOMElement Object representing the current HTML tag
 	 * @var DOMElement
 	 */
 	private $domElement;
 	/**
 	 * Objet de la clase DOMDocument
+	 * DOMDocument object representing the current document
 	 * @var DOMDocument
 	 */
 	public static $domDocument;
 	/**
 	 * Objet de la clase Htmltag
+	 * HtmlTag object representing the HTML document
 	 * @var Htmltag
 	 */
 	public static $htmlDocument;
 	/**
 	 * Objet de la clase Htmltag représentant le body
+	 * HtmlTag object representing the body element
 	 * @var Htmltag
 	 */
 	public static $htmlBody;
 	/**
 	 * Objet de la clase Htmltag représentant le head
+	 * HtmlTag object representing the head element
 	 * @var Htmltag
 	 */
 	public static $htmlHead;
 	/**
 	 * Tabelau des id d'éléments déjà déclarés afin d'éviter tout doublons d'id
 	 * ce qui rend la page invalide et pertube l'accès à l'élément par son id en JS
+	 * Array containing all elements id attribute values in order to avoid double id declaration in a same document
 	 * @var array
 	 */
 	private static $declaredIds = array();
 	/**
 	 * Tabelau des tag html valides
+	 * Array containing all valid tag name
 	 * @var array
 	 */
 	private static $validTagsName = array('a'=>'','abbr'=>'','acronym'=>'','address'=>'','area'=>'','b'=>'','base'=>'','bdo'=>'','big'=>'','blockquote'=>'','body'=>'','br'=>'','button'=>'','caption'=>'','cite'=>'','code'=>'','col'=>'','colgroup'=>'','dd'=>'','del'=>'','dfn'=>'','div'=>'','dl'=>'','DOCTYPE'=>'','dt'=>'','em'=>'','fieldset'=>'','font'=>'','form'=>'','h1'=>'','h2'=>'','h3'=>'','h4'=>'','h5'=>'','h6'=>'','head'=>'','html'=>'','hr'=>'','i'=>'','img'=>'','input'=>'','ins'=>'','kbd'=>'','label'=>'','legend'=>'','li'=>'','link'=>'','list'=>'','map'=>'','meta'=>'','noscript'=>'','object'=>'','ol'=>'','optgroup'=>'','option'=>'','p'=>'','param'=>'','pre'=>'','q'=>'','samp'=>'','script'=>'','select'=>'','small'=>'','span'=>'','strong'=>'','style'=>'','sub'=>'','sup'=>'','table'=>'','tbody'=>'','td'=>'','textarea'=>'','tfoot'=>'','th'=>'','thead'=>'','title'=>'','tr'=>'','tt'=>'','ul'=>'','var'=>'');
 	/**
 	 * Tabelau des attributs html valides
+	 * Array containing all valid attributes and some specific
 	 * @var array
 	 */
 	private static $validAttributesName = array('abbr'=>'','about'=>'','accesskey'=>'','action'=>'','archive'=>'','alt'=>'','autocomplete'=>'','axis'=>'','charset'=>'','checked'=>'','cite'=>'','class'=>'','cols'=>'','colspan'=>'','content-length'=>'','content'=>'','coords'=>'','datatype'=>'','datetime'=>'','declare'=>'','defaultAction'=>'','dir'=>'','disabled'=>'','edit'=>'','enctype'=>'','encoding'=>'','event'=>'','for'=>'','full'=>'','handler'=>'','headers'=>'','height'=>'','href'=>'','hreflang'=>'','hrefmedia'=>'','hreftype'=>'','http-equiv'=>'','id'=>'','ismap'=>'','key'=>'','label'=>'','layout'=>'','lang'=>'','media'=>'','method'=>'','name'=>'','nextfocus'=>'','observer'=>'','onblur'=>'','onchange'=>'','onclick'=>'','onfocus'=>'','onkeypress'=>'','onkeyup'=>'','onkeydown'=>'','onmousedown'=>'','onmousemove'=>'','onmouseover'=>'','onmouseout'=>'','onmouseup'=>'','onsubmit'=>'','phase'=>'','prevfocus'=>'','propagate'=>'','property'=>'','rel'=>'','repeat-bind'=>'','repeat-model'=>'','repeat-nodeset'=>'','repeat-number'=>'','repeat-startindex'=>'','rev'=>'','readonly'=>'','role'=>'','rows'=>'','rowspan'=>'','scope'=>'','selected'=>'','shape'=>'','span'=>'','src'=>'','srctype'=>'','style'=>'','tabindex'=>'','target'=>'','targetid'=>'','targetrole'=>'','title'=>'','type'=>'','usemap'=>'','value'=>'','valuetype'=>'','version'=>'','width'=>'','xmlns'=>'','xml:base'=>'','xml:id'=>'','xml:lang'=>'','xsi:schemaLocation'=>'');
 	/**
-	 * Constructeur de la classe
+	 * Constructeur de la classe / Class constructor
 	 *
 	 * @uses HtmlTag::tagIsValid()
 	 * @uses HtmlTag::setTagName()
@@ -109,10 +126,10 @@ class HtmlTag
 	 * @uses HtmlTag::DOCTYPE_DEFINITION
 	 * @uses HtmlTag::DOCTYPE_ROOT_TAG
 	 * @uses HtmlTag::DOCTYPE_URL
-	 * @param string nom du tag HtmlTag de l'élément
-	 * @param string lang du document
-	 * @param string encodage du document
-	 * @param string reset du domDocument
+	 * @param string nom du tag HtmlTag de l'élément /tag name
+	 * @param string lang du document / document language
+	 * @param string encodage du document / document encoding
+	 * @param string reset du domDocument / allows to reset the DOMDocument and the root HTML element 
 	 * @return HtmlTag
 	 */
 	public function __construct($_tagName, $_lang = null, $_encoding = HtmlTag::DEFAULT_ENCODING, $_reset = false)
@@ -124,6 +141,7 @@ class HtmlTag
 		{
 			/**
 			 * Création du document général
+			 * DOMDocument creation
 			 */
 			$doctype = DOMImplementation::createDocumentType(HtmlTag::DOCTYPE_ROOT_TAG,HtmlTag::DOCTYPE_DEFINITION,HtmlTag::DOCTYPE_URL);
 			HtmlTag::$domDocument = DOMImplementation::createDocument(null,null,$doctype);
@@ -135,12 +153,14 @@ class HtmlTag
 			HtmlTag::$domDocument->encoding = $_encoding;
 			/**
 			 * Création de la zone HTML
+			 * Root HTML element creation
 			 */
 			HtmlTag::$htmlDocument = new HtmlTag('html');
 			HtmlTag::$htmlDocument->addAttribute('xml:lang',!empty($_lang)?trim($_lang):'fr',true);
 		}
 		/**
 		 * Si le tag est valide
+		 * Tag name is valid
 		 */
 		if(is_string($_tagName) && HtmlTag::tagIsValid($_tagName))
 		{
@@ -150,6 +170,7 @@ class HtmlTag
 			$this->setTagName(strtolower($_tagName));
 			/**
 			 * Définition de l'attribut id
+			 * Id attribute value definition if enabled
 			 */
 			if(defined('HTML_TAG_DEFINE_ID') && HTML_TAG_DEFINE_ID === true)
 				$this->setId('tag_' . $_tagName);
@@ -158,6 +179,7 @@ class HtmlTag
 	/**
 	 * Méthode permettant de charger un document à la place du DOMDocument par défaut.
 	 * Cela a pour effet de supprimer tout ce qui aurait pu être créé jusque là !
+	 * Method to load a DOMDocument from a existing file. Every objects create until here will be deleted
 	 * 
 	 * @uses HtmlTag::setHead()
 	 * @uses HtmlTag::setBody()
@@ -167,7 +189,7 @@ class HtmlTag
 	 * @uses DOMNodeList::item()
 	 * @uses DOMNode::hasAttributes()
 	 * @uses DOMNamedNodeMap::item()
-	 * @param string contenu du document
+	 * @param string contenu du document / file content
 	 * @return bool true|false
 	 */
 	public static function loadDomDocument($_fileContent, $_resetDomDocument = false)
@@ -190,11 +212,13 @@ class HtmlTag
 					}
 					/**
 					 * Tentative de récupération de la partie head
+					 * head element existing in the current file ?
 					 */
 					if($domDocument->getElementsByTagName('head') && ($head = HtmlTag::getHtmlTagFromDOMElement($domDocument->getElementsByTagName('head')->item(0),true)))
 						HtmlTag::setHead($head);
 					/**
 					 * Tentative de récupération de la partie body
+					 * body element existing in the current file ?
 					 */
 					if($domDocument->getElementsByTagName('body') && ($body = HtmlTag::getHtmlTagFromDOMElement($domDocument->getElementsByTagName('body')->item(0),true)))
 						HtmlTag::setBody($body);
@@ -211,9 +235,10 @@ class HtmlTag
 	}
 	/**
 	 * Méthode permettant de charger un document complet depuis un fichier
+	 * Method to load a DOMDocument from a file by its path
 	 * 
 	 * @uses HtmlTag::loadDomDocument()
-	 * @param string chemin complet d'accès au fichier
+	 * @param string chemin complet d'accès au fichier / path to file
 	 * @return bool true|false
 	 */
 	public static function loadDomDocumentFile($_fileName)
@@ -221,18 +246,19 @@ class HtmlTag
 		return is_file($_fileName)?HtmlTag::loadDomDocument(file_get_contents($_fileName)):false;
 	}
 	/**
-	 * Méthode permettant de facilement créer une élément de type script/jaavscript
+	 * Méthode permettant de facilement créer une élément de type script/javascript
+	 * Facility method to generate a script tag
 	 *
 	 * @uses HtmlTagScript::setSrc()
 	 * @uses HtmlTagScript::setCharset()
 	 * @uses HtmlTag::setValue()
 	 * @uses HtmlTag::addAttributes()
 	 * @uses HtmlTag::addValue()
-	 * @param string l'url du fichier javascript à charger
-	 * @param array les attribut de l'élément
-	 * @param HtmlTag l'élément auquel ajouté la balise script si nécessaire
-	 * @param string contenu de la balise script si nécessaire
-	 * @param string le charset du contenu/script
+	 * @param string l'url du fichier javascript à charger / JS File url
+	 * @param array les attributs de l'élément / tag attributes
+	 * @param HtmlTag l'élément auquel ajouté la balise script si nécessaire / existing element that will contain the script element crated
+	 * @param string contenu de la balise script si nécessaire / JS code
+	 * @param string le charset du contenu/script / charset value
 	 * @return HtmlTag la balise script
 	 */
 	public static function createScript($_src = '', $_attributes = null, $_addtoHtml = null, $_content = '', $_charset = '')
@@ -252,15 +278,16 @@ class HtmlTag
 	}
 	/**
 	 * Méthode permettant de facilement créer une élément de type text/css
+	 * Facility method to generate a "css" tag
 	 *
 	 * @uses HtmlTagLink::setHref()
 	 * @uses HtmlTagLink::setRel()
 	 * @uses HtmlTag::setType()
 	 * @uses HtmlTag::addAttributes()
 	 * @uses HtmlTag::addValue()
-	 * @param string l'url du fichier css à charger
-	 * @param array les attribut de l'élément
-	 * @param HtmlTag l'élément auquel ajouté la balise link si nécessaire
+	 * @param string l'url du fichier css à charger / CSS file url
+	 * @param array les attributs de l'élément / tag attributes
+	 * @param HtmlTag l'élément auquel ajouté la balise link si nécessaire / existing element that will contain the script element crated
 	 * @return HtmlTag la balise link
 	 */
 	public static function createCssLink($_href, $_attributes = null, $_addtoHtml = null)
@@ -277,15 +304,16 @@ class HtmlTag
 	}
 	/**
 	 * Méthode permettant de facilement créer une élément de type meta
+	 * Facility method to generate a "meta" tag
 	 *
 	 * @uses HtmlTagMeta::define()
 	 * @uses HtmlTag::addAttributes()
 	 * @uses HtmlTag::addValue()
-	 * @param string nom identifiant le type de la meta
-	 * @param string valeur du type de la meta
-	 * @param string valeur de la meta
-	 * @param array les attribut de l'élément
-	 * @param HtmlTag l'élément auquel ajouté la balise link si nécessaire
+	 * @param string nom identifiant le type de la meta / meta type name
+	 * @param string valeur du type de la meta / meta type value
+	 * @param string valeur de la meta / meta value
+	 * @param array les attributs de l'élément / tag attributes
+	 * @param HtmlTag l'élément auquel ajouté la balise link si nécessaire / existing element that will contain the script element crated
 	 * @return HtmlTag la balise meta
 	 */
 	public static function createMeta($_type, $_typeName, $_value, $_attributes = null, $_addtoHtml = null)
@@ -300,15 +328,14 @@ class HtmlTag
 	}
 	/**
 	 * Méthode permettant de facilement créer une élément de type title
+	 * Facility method to generate a "title" tag
 	 *
 	 * @uses HtmlTag::setValue()
 	 * @uses HtmlTag::addAttributes()
 	 * @uses HtmlTag::addValue()
-	 * @param string nom identifiant le type de la meta
-	 * @param string valeur du type de la meta
-	 * @param string valeur de la meta
-	 * @param array les attribut de l'élément
-	 * @param HtmlTag l'élément auquel ajouté la balise link si nécessaire
+	 * @param string valeur du title / title value
+	 * @param array les attributs de l'élément / tag attributes
+	 * @param HtmlTag l'élément auquel ajouté la balise link si nécessaire / existing element that will contain the script element crated
 	 * @return HtmlTag la balise meta
 	 */
 	public static function createTitle($_value, $_attributes = null, $_addtoHtml = null)
@@ -323,17 +350,18 @@ class HtmlTag
 	}
 	/**
 	 * Méthode permettant de facilement créer une élément de type img
+	 * Facility method to generate a "img" tag
 	 *
 	 * @uses HtmlTagImg::setSrc()
 	 * @uses HtmlTagImg::setAlt()
 	 * @uses HtmlTag::setTitle()
 	 * @uses HtmlTag::addAttributes()
 	 * @uses HtmlTag::addValue()
-	 * @param string url de l'image
-	 * @param string alt de l'image
-	 * @param string title de l'image
-	 * @param array les attribut de l'élément
-	 * @param HtmlTag l'élément auquel ajouté la balise link si nécessaire
+	 * @param string url de l'image / image url
+	 * @param string alt de l'image / image alt value
+	 * @param string title de l'image / image title value
+	 * @param array les attributs de l'élément / tag attributes
+	 * @param HtmlTag l'élément auquel ajouté la balise link si nécessaire / existing element that will contain the script element crated
 	 * @return HtmlTag la balise meta
 	 */
 	public static function createImg($_src, $_alt, $_title = '', $_attributes = null, $_addtoHtml = null)
@@ -351,16 +379,16 @@ class HtmlTag
 	}
 	/**
 	 * Méthode permettant de facilement créer une élément de type label
+	 * Facility method to generate a "label" tag
 	 *
 	 * @uses HtmlTagLabel::setFor()
 	 * @uses HtmlTag::setValue()
 	 * @uses HtmlTag::addAttributes()
-	 * @uses HtmlTag::addValue()
-	 * @param string url de l'image
-	 * @param string titre du label
-	 * @param string id de l'élément auquel fait référence le label
-	 * @param array les attribut de l'élément
-	 * @param HtmlTag l'élément auquel ajouté la balise link si nécessaire
+	 * @uses HtmlTag::addValue() 
+	 * @param string titre du label / label value
+	 * @param string id de l'élément auquel fait référence le label / for attribute value
+	 * @param array les attributs de l'élément / tag attributes
+	 * @param HtmlTag l'élément auquel ajouté la balise link si nécessaire / existing element that will contain the script element crated
 	 * @return HtmlTag la balise label
 	 */
 	public static function createLabel($_label, $_for = '', $_attributes = null, $_addtoHtml = null)
@@ -376,17 +404,17 @@ class HtmlTag
 		return $l;
 	}
 	/**
-	 * Méthode permettant de facilement créer une élément de type label
+	 * Méthode permettant de facilement créer une élément de type a
+	 * Facility method to generate a "a" tag
 	 *
 	 * @uses HtmlTagA::setHref()
 	 * @uses HtmlTag::setValue()
 	 * @uses HtmlTag::addAttributes()
 	 * @uses HtmlTag::addValue()
-	 * @param string url
-	 * @param string texte du lien
-	 * @param string id de l'élément auquel fait référence le label
-	 * @param array les attribut de l'élément
-	 * @param HtmlTag l'élément auquel ajouté la balise link si nécessaire
+	 * @param string url / url
+	 * @param string texte du lien anchor text
+	 * @param array les attributs de l'élément / tag attributes
+	 * @param HtmlTag l'élément auquel ajouté la balise link si nécessaire / existing element that will contain the script element crated
 	 * @return HtmlTag la balise label
 	 */
 	public static function createA($_href, $_anchor, $_attributes = null, $_addtoHtml = null)
@@ -402,16 +430,17 @@ class HtmlTag
 	}
 	/**
 	 * Méthode permettant de créer un tag à la volée par son nom si la classe HtmlTag{$_TagName} de ce tag existe
+	 * Generic facility method to generate any html tag
 	 *
 	 * @uses HtmlTag::__className()
 	 * @uses HtmlTag::getTagName()
 	 * @uses HtmlTag::addAttributes()
 	 * @uses HtmlTag::getDomElement()
 	 * @uses HtmlTag::setValue()
-	 * @param string nom du tag
-	 * @param array attributs du tag
-	 * @param string type de l'attribut (input, ul/ol, etc)
-	 * @param HtmlTag* élément auquel ajouter le nouvel élément
+	 * @param string nom du tag / tag name
+	 * @param array attributs du tag / tag attributes
+	 * @param string type de l'attribut (input, ul/ol, etc) / tag type
+	 * @param HtmlTag* élément auquel ajouter le nouvel élément / existing element that will contain the script element crated
 	 * @return HtmlTag|null
 	 */
 	public static function &createTag($_tagName, array $_tagAttributes = array(), $_tagType = null, $_addTagTo = null)
@@ -439,10 +468,11 @@ class HtmlTag
 	/**
 	 * Méthode permettant de générer le code HtmlTag de l'élément
 	 * Génération du code XHTML de l'élément en cours uniquement
+	 * Method to generate the current element HTML code
 	 *
 	 * @uses HtmlTag::getDomElement()
 	 * @uses DOMDocument::saveXML()
-	 * @param bool transmettre le header de type XML ou non
+	 * @param bool transmettre le header de type XML ou non / send header or not
 	 * @return string le code HtmlTag
 	 */
 	public function toHtml($_sendHeader = false)
@@ -459,9 +489,10 @@ class HtmlTag
 	/**
 	 * Méthode permettant de générer le code HtmlTag de l'élément
 	 * Génération du code XML de l'élément en cours uniquement
+	 * Method to generate the current element XML code
 	 *
 	 * @uses HtmlTag::toHtml()
-	 * @param bool transmettre le header de type XML ou non
+	 * @param bool transmettre le header de type XML ou non / send header or not
 	 * @return string le code HtmlTag
 	 */
 	public function toXml($_sendHeader = false)
@@ -477,6 +508,7 @@ class HtmlTag
 	}
 	/**
 	 * Méthode d'affichage de la page html compléte
+	 * Methot to genrate the whole document HTML code
 	 *
 	 * @uses HtmlTag::addValue()
 	 * @uses HtmlTag::getBody()
@@ -484,7 +516,7 @@ class HtmlTag
 	 * @uses HtmlTag::getDomElement()
 	 * @uses DOMDocument::appendChild()
 	 * @uses DOMDocument::saveXML()
-	 * @param bool transmettre le header de type XML ou non
+	 * @param bool transmettre le header de type XML ou non / send header or not
 	 * @return string
 	 */
 	public static function displayFullHtml($_sendHeader = false)
@@ -504,9 +536,10 @@ class HtmlTag
 	}
 	/**
 	 * Méthode d'affichage de la page xml compléte
+	 * Methot to genrate the whole document XML code
 	 *
 	 * @uses HtmlTag::displayFullHtml()
-	 * @param bool transmettre le header de type XML ou non
+	 * @param bool transmettre le header de type XML ou non / send header or not
 	 * @return string
 	 */
 	public static function displayFullXml($_sendHeader = false)
@@ -522,19 +555,21 @@ class HtmlTag
 	}
 	/**
 	 * Méthode permettant de définir un attribut et sa valeur pour l'élément HtmlTag
+	 * Method to défine an attribute value for the current element
 	 *
 	 * @uses HtmlTag::attributeIsValid()
 	 * @uses HtmlTag::getDomElement()
 	 * @uses DOMElement::setAttribute()
-	 * @param string valeur de l'attribut HtmlTag
-	 * @param mixed|HtmlTag valeur de l'élément HtmlTag
-	 * @param bool appel depuis une méthode de HtmlTag pour définir un attribut spécifique
-	 * @return bool true|false selon la validité de l'attribut
+	 * @param string valeur de l'attribut HtmlTag / attribute name
+	 * @param mixed|HtmlTag valeur de l'élément HtmlTag / attribute value
+	 * @param bool appel depuis une méthode de HtmlTag pour définir un attribut spécifique / defines if the calling method is the attribute method or not
+	 * @return bool true|false selon la validité de l'attribut / depends of the validity of the attribute
 	 */
 	public function addAttribute($_attributeName, $_attributeValue, $_specificAttributeMethodCall = false)
 	{
 		/**
 		 * Si nom de l'attribut valide et valeur de type chaine de caractères|tableau de valeurs
+		 * If the attribute name is valid and the value also
 		 */
 		if((is_scalar($_attributeValue) || is_array($_attributeValue) || ($_attributeValue instanceof HtmlTag)) && HtmlTag::attributeIsValid($_attributeName))
 		{
@@ -582,6 +617,7 @@ class HtmlTag
 			/**
 			 * Appel de la méthode propre à l'attribut si existante
 			 * et si cette méthode n'est pas appelée depuis la méthode propre à l'attribut
+			 * Calling the attribute method if exist and if it's not this one which is calling the current method
 			 */
 			$setMethodName = 'set' . ucfirst($_attributeName);
 			if(!$_specificAttributeMethodCall && method_exists($this,$setMethodName))
@@ -599,8 +635,8 @@ class HtmlTag
 	 * Alias to addAttribute()
 	 * @see HtmlTag::addAttribute()
 	 * 
-	 * @param string valeur de l'attribut HtmlTag
-	 * @param mixed|HtmlTag valeur de l'élément HtmlTag
+	 * @param string valeur de l'attribut HtmlTag / attribute name
+	 * @param mixed|HtmlTag valeur de l'élément HtmlTag / attribute value
 	 * @return bool true|false selon la validité de l'attribut
 	 */
 	public function setAttribute($_attributeName, $_attributeValue)
@@ -609,6 +645,7 @@ class HtmlTag
 	}
 	/**
 	 * Méthode permettant de définir les attributs d'un élément HTML à partir d'un tableau
+	 * Method to define attributes with an associative array of attribute names and values
 	 *
 	 * @uses HtmlTag::addAttribute()
 	 * @param array les attributs de l'élément HTML
@@ -627,6 +664,7 @@ class HtmlTag
 					/**
 					 * Méthode set{Attribute} définie ? => on l'utilise si la valeur est bien une chaine de caractères,
 					 * sinon on passe par la méthode générique addAttribute()
+					 * Calling the attribute method if exist and if it's not this one which is calling the current method
 					 */
 					if(method_exists($this,$setAttr) && (is_scalar($attrValue) || ($setAttr == 'setValue' && ($attrValue instanceof HtmlTag))))
 						$return &= $this->$setAttr($attrValue)?true:false;
@@ -644,6 +682,7 @@ class HtmlTag
 	}
 	/**
 	 * Méthode permettant d'ajouter à l'objet en cours les attributs du DOMElement en paramètre
+	 * Method to add attributes to the current element from a DOMElement object
 	 * 
 	 * @uses HtmlTag::addAttributes()
 	 * @uses HtmlTag::_getDomElementAttributes()
@@ -656,11 +695,12 @@ class HtmlTag
 	}
 	/**
 	 * Méthode permettant de récupérer la valeur d'un attribut
+	 * Method to get attribute value
 	 *
 	 * @uses HtmlTag::getDomElement()
 	 * @uses DOMElement::getAttribute()
 	 * @uses DOMElement::hasAttribute()
-	 * @param string nom de l'attribut
+	 * @param string nom de l'attribut / attribute name
 	 * @return string
 	 */
 	public function getAttribute($_attributeName)
@@ -669,10 +709,11 @@ class HtmlTag
 	}
 	/**
 	 * Méthode permettant de supprimer un attribut de l'élément en cours
+	 * Method to unset attribute
 	 *
 	 * @uses HtmlTag::getDomElement()
 	 * @uses DOMElement::removeAttribute()
-	 * @param string nom de l'attribut
+	 * @param string nom de l'attribut / attribute name
 	 * @return bool true|false
 	 */
 	public function removeAttribute($_attributeName)
@@ -683,7 +724,7 @@ class HtmlTag
 	 * Alias to removeAttribute
 	 *
 	 * @uses HtmlTag::removeAttribute()
-	 * @param string nom de l'attribut
+	 * @param string nom de l'attribut / attribute name
 	 * @return bool true|false
 	 */
 	public function unsetAttribute($_attributeName)
@@ -700,6 +741,7 @@ class HtmlTag
 	/**
 	 * Méthode permettant de récupérer au format tableau les attributs et 
 	 * leur valeur de l'élément DOMElement de l'objet en cours
+	 * Method to get the current element attributes
 	 * 
 	 * @uses HtmlTag::_getDomElementAttributes()
 	 * @return array les attributs de l'élément DOMElement
@@ -710,6 +752,7 @@ class HtmlTag
 	}
 	/**
 	 * Méthode satic de récupération des attributs d'un DOMElement
+	 * Static method to get the attributes from a DOMElement object
 	 * 
 	 * @uses DOMElement::hasAttributes()
 	 * @uses DOMNamedNodeMap::item()
@@ -737,6 +780,9 @@ class HtmlTag
 		return $domElementAttributes;
 	}
 	/**
+	 * Méthode de définition de l'objet DOMElement de l'objet en cours
+	 * Method to set current DOMElement object
+	 * 
 	 * @param DOMElement
 	 * @return DOMElement
 	 */
@@ -746,10 +792,11 @@ class HtmlTag
 	}
 	/**
 	 * Méthode permettant de définir l'attribut 'id' de l'élément HtmlTag
+	 * Method to set id attribute value and manage double id declarations
 	 *
 	 * @uses HtmlTag::addAttribute()
 	 * @uses HtmlTag::getId()
-	 * @param string l'id
+	 * @param string l'id / id value
 	 * @return bool true|false
 	 */
 	public function setId($_id)
@@ -771,6 +818,7 @@ class HtmlTag
 	}
 	/**
 	 * Méthode permettant de récupérer la valeur de l'attribut id définie
+	 * Method to get id attribute value
 	 *
 	 * @uses HtmlTag::getAttribute()
 	 * @return string
@@ -781,6 +829,7 @@ class HtmlTag
 	}
 	/**
 	 * Méthode permettant de supprimer la valeur de l'attribut id définie
+	 * Method to unset id attribute value
 	 *
 	 * @uses HtmlTag::unsetAttribute()
 	 * @return bool true|false
@@ -791,6 +840,7 @@ class HtmlTag
 	}
 	/**
 	 * Méthode permettant de définir l'attribut 'accesskey' de l'élément HtmlTag
+	 * Method to set accesskey attribute value
 	 *
 	 * @uses HtmlTag::addAttribute()
 	 * @param string le accesskey
@@ -802,6 +852,7 @@ class HtmlTag
 	}
 	/**
 	 * Méthode permettant de récupérer la valeur de l'attribut accesskey définie
+	 * Method to get accesskey attribute value
 	 *
 	 * @uses HtmlTag::getAttribute()
 	 * @return string
@@ -812,6 +863,7 @@ class HtmlTag
 	}
 	/**
 	 * Méthode permettant de supprimer la valeur de l'attribut accesskey définie
+	 * Method to unset accesskey attribute value
 	 *
 	 * @uses HtmlTag::unsetAttribute()
 	 * @return bool true|false
@@ -822,6 +874,7 @@ class HtmlTag
 	}
 	/**
 	 * Méthode permettant de définir l'attribut 'tabindex' de l'élément HtmlTag
+	 * Method to set tabindex attribute value
 	 *
 	 * @uses HtmlTag::addAttribute()
 	 * @param string le tabindex
@@ -833,6 +886,7 @@ class HtmlTag
 	}
 	/**
 	 * Méthode permettant de récupérer la valeur de l'attribut tabindex définie
+	 * Method to get tabindex attribute value
 	 *
 	 * @uses HtmlTag::getAttribute()
 	 * @return string
@@ -843,6 +897,7 @@ class HtmlTag
 	}
 	/**
 	 * Méthode permettant de supprimer la valeur de l'attribut tabindex définie
+	 * Method to unset tabindex attribute value
 	 *
 	 * @uses HtmlTag::unsetAttribute()
 	 * @return bool true|false
@@ -853,6 +908,7 @@ class HtmlTag
 	}
 	/**
 	 * Méthode permettant de définir l'attribut 'name' de l'élément HtmlTag
+	 * Method to set name attribute value
 	 *
 	 * @uses HtmlTag::addAttribute()
 	 * @param string le name
@@ -864,6 +920,7 @@ class HtmlTag
 	}
 	/**
 	 * Méthode permettant de récupérer la valeur de l'attribut name définie
+	 * Method to get name attribute value
 	 *
 	 * @uses HtmlTag::getAttribute()
 	 * @return string
@@ -874,6 +931,7 @@ class HtmlTag
 	}
 	/**
 	 * Méthode permettant de supprimer la valeur de l'attribut name définie
+	 * Method to unset name attribute value
 	 *
 	 * @uses HtmlTag::unsetAttribute()
 	 * @return bool true|false
@@ -884,10 +942,11 @@ class HtmlTag
 	}
 	/**
 	 * Méthode permettant de définir l'attribut 'class' de l'élément HtmlTag
+	 * Method to set class attribute value
 	 *
 	 * @uses HtmlTag::getClass()
 	 * @uses HtmlTag::addAttribute()
-	 * @param string le class
+	 * @param string le class / class value(s)
 	 * @return bool true|false
 	 */
 	public function setClass($_class)
@@ -901,11 +960,14 @@ class HtmlTag
 				$newClasses[$className] = trim($className);
 			return count($newClasses) > 0?$this->addAttribute('class',implode(' ',$newClasses),true):false;
 		}
+		elseif(is_array($_class))
+			return $this->addAttribute('class',$_class);
 		else
 			return false;
 	}
 	/**
 	 * Méthode permettant de récupérer la valeur de l'attribut class définie
+	 * Method to get class attribute value
 	 *
 	 * @uses HtmlTag::getAttribute()
 	 * @return string
@@ -916,6 +978,7 @@ class HtmlTag
 	}
 	/**
 	 * Méthode permettant de supprimer la valeur de l'attribut class définie
+	 * Method to unset class attribute value
 	 *
 	 * @uses HtmlTag::unsetAttribute()
 	 * @return bool true|false
@@ -926,6 +989,7 @@ class HtmlTag
 	}
 	/**
 	 * Méthode permettant de définir l'attribut 'style' de l'élément HtmlTag
+	 * Method to set style attribute value
 	 *
 	 * @uses HtmlTag::addAttribute()
 	 * @param string le style
@@ -937,6 +1001,7 @@ class HtmlTag
 	}
 	/**
 	 * Méthode permettant de récupérer la valeur de l'attribut style définie
+	 * Method to get style attribute value
 	 *
 	 * @uses HtmlTag::getAttribute()
 	 * @return string
@@ -947,6 +1012,7 @@ class HtmlTag
 	}
 	/**
 	 * Méthode permettant de supprimer la valeur de l'attribut style définie
+	 * Method to unset style attribute value
 	 *
 	 * @uses HtmlTag::unsetAttribute()
 	 * @return bool true|false
@@ -957,6 +1023,7 @@ class HtmlTag
 	}
 	/**
 	 * Méthode permettant de définir l'attribut 'title' de l'élément HtmlTag
+	 * Method to set title attribute value
 	 *
 	 * @uses HtmlTag::addAttribute()
 	 * @param string le title
@@ -968,6 +1035,7 @@ class HtmlTag
 	}
 	/**
 	 * Méthode permettant de récupérer la valeur de l'attribut title définie
+	 * Method to set title attribute value
 	 *
 	 * @uses HtmlTag::getAttribute()
 	 * @return string
@@ -978,6 +1046,7 @@ class HtmlTag
 	}
 	/**
 	 * Méthode permettant de supprimer la valeur de l'attribut title définie
+	 * Method to unset title attribute value
 	 *
 	 * @uses HtmlTag::unsetAttribute()
 	 * @return bool true|false
@@ -988,6 +1057,7 @@ class HtmlTag
 	}
 	/**
 	 * Méthode permettant de définir l'attribut 'type' de l'élément HtmlTag
+	 * Method to set type attribute value
 	 *
 	 * @uses HtmlTag::addAttribute()
 	 * @param string le title
@@ -999,6 +1069,7 @@ class HtmlTag
 	}
 	/**
 	 * Méthode permettant de récupérer la valeur de l'attribut type définie
+	 * Method to get type attribute value
 	 *
 	 * @uses HtmlTag::getAttribute()
 	 * @return string
@@ -1009,6 +1080,7 @@ class HtmlTag
 	}
 	/**
 	 * Méthode permettant de supprimer la valeur de l'attribut type définie
+	 * Method to unset type attribute value
 	 *
 	 * @uses HtmlTag::unsetAttribute()
 	 * @return bool true|false
@@ -1019,6 +1091,7 @@ class HtmlTag
 	}
 	/**
 	 * Méthode permettant d'indiquer que le tag HTML est en readonly uniquement
+	 * Method to set readonly attribute value
 	 *
 	 * @uses HtmlTag::addAttribute()
 	 * @uses HtmlTag::unsetReadonly()
@@ -1031,6 +1104,7 @@ class HtmlTag
 	}
 	/**
 	 * Méthode permettant d'indiquer que le tag HTML n'est pas en readonly uniquement
+	 * Method to unset readonly attribute value
 	 *
 	 * @uses HtmlTag::removeAttribute()
 	 * @return bool true|false
@@ -1041,6 +1115,7 @@ class HtmlTag
 	}
 	/**
 	 * Méthode permettant d'indiquer que le tag HTML est désacivé (disabled) uniquement
+	 * Method to set disabled attribute value
 	 *
 	 * @uses HtmlTag::addAttribute()
 	 * @uses HtmlTag::unsetDisabled()
@@ -1053,6 +1128,7 @@ class HtmlTag
 	}
 	/**
 	 * Méthode permettant d'indiquer que le tag HTML n'est pas désacivé (disabled) uniquement
+	 * Method to unset disabled attribute value
 	 *
 	 * @uses HtmlTag::removeAttribute()
 	 * @return bool true|false
@@ -1063,6 +1139,7 @@ class HtmlTag
 	}
 	/**
 	 * Méthode permettant de définir l'événement onclick avec l'appel de la méthode par défaut onClickF
+	 * Specific method to set onclick attribute value with a specific js event function handler
 	 * 
 	 * @uses HtmlTag::setDomEventHandler()
 	 * @return bool true|false
@@ -1073,6 +1150,7 @@ class HtmlTag
 	}
 	/**
 	 * Méthode permettant de définir l'événement onchange avec l'appel de la méthode par défaut onChangeF
+	 * Specific method to set onchange attribute value with a specific js event function handler
 	 * 
 	 * @uses HtmlTag::setDomEventHandler()
 	 * @return bool true|false
@@ -1083,6 +1161,7 @@ class HtmlTag
 	}
 	/**
 	 * Méthode permettant de définir l'événement onsubmit avec l'appel de la méthode par défaut onSubmitF
+	 * Specific method to set onsubmit attribute value with a specific js event function handler
 	 * 
 	 * @uses HtmlTag::setDomEventHandler()
 	 * @return bool true|false
@@ -1093,6 +1172,7 @@ class HtmlTag
 	}
 	/**
 	 * Méthode permettant de définir l'événement onmouseout avec l'appel de la méthode par défaut onMouseoutF
+	 * Specific method to set onmouseout attribute value with a specific js event function handler
 	 * 
 	 * @uses HtmlTag::setDomEventHandler()
 	 * @return bool true|false
@@ -1103,6 +1183,7 @@ class HtmlTag
 	}
 	/**
 	 * Méthode permettant de définir l'événement onmouseover avec l'appel de la méthode par défaut onMouseoverF
+	 * Specific method to set onmouseover attribute value with a specific js event function handler
 	 * 
 	 * @uses HtmlTag::setDomEventHandler()
 	 * @return bool true|false
@@ -1113,6 +1194,7 @@ class HtmlTag
 	}
 	/**
 	 * Méthode permettant de définir l'événement onkeyup avec l'appel de la méthode par défaut onKeyupF
+	 * Specific method to set onkeyup attribute value with a specific js event function handler
 	 * 
 	 * @uses HtmlTag::setDomEventHandler()
 	 * @return bool true|false
@@ -1123,6 +1205,7 @@ class HtmlTag
 	}
 	/**
 	 * Méthode permettant de définir l'événement onkeydown avec l'appel de la méthode par défaut onKeydownF
+	 * Specific method to set onkeydown attribute value with a specific js event function handler
 	 * 
 	 * @uses HtmlTag::setDomEventHandler()
 	 * @return bool true|false
@@ -1133,6 +1216,7 @@ class HtmlTag
 	}
 	/**
 	 * Méthode permettant de définir l'événement onfocus avec l'appel de la méthode par défaut onFocusF
+	 * Specific method to set onfocus attribute value with a specific js event function handler
 	 * 
 	 * @uses HtmlTag::setDomEventHandler()
 	 * @return bool true|false
@@ -1143,6 +1227,7 @@ class HtmlTag
 	}
 	/**
 	 * Méthode permettant de définir l'événement onblur avec l'appel de la méthode par défaut onBlurF
+	 * Specific method to set onblur attribute value with a specific js event function handler
 	 * 
 	 * @uses HtmlTag::setDomEventHandler()
 	 * @return bool true|false
@@ -1153,10 +1238,11 @@ class HtmlTag
 	}
 	/**
 	 * Méthode générale utilisée par les méthode de définition des événements DOM
+	 * Generic method to define the specific js event function handler
 	 * 
 	 * @uses HtmlTag::addAttribute()
-	 * @param string nom de l'événement
-	 * @param string nom de la fonction de prise en charge de l'événement
+	 * @param string nom de l'événement / event name
+	 * @param string nom de la fonction de prise en charge de l'événement / js event function handler
 	 * @return bool true|false
 	 */
 	private function setDomEventHandler($_domEvent, $_eventHandler)
@@ -1287,6 +1373,8 @@ class HtmlTag
 	}
 	/** 
 	 * Retourne la liste des attributs de tag HTML valides
+	 * Method to get valid atribute name
+	 * 
 	 * @return array
 	 */
 	public static function getValidAttributesName()
@@ -1295,6 +1383,7 @@ class HtmlTag
 	}
 	/**
 	 * Méthode permettant de tester la validité d'un attribut
+	 * Method to test the validity of the attribute name
 	 * 
 	 * @uses HtmlTag::getValidAttributesName()
 	 * @param string nom de l'attribut
@@ -1306,6 +1395,7 @@ class HtmlTag
 	}
 	/**
 	 * Méthode permettant de déclarer des attributs HTML valides en plus de ceux par défaut
+	 * Method to add valid/specific attribute names
 	 * 
 	 * @param string nom de l'attribute
 	 */
@@ -1315,6 +1405,8 @@ class HtmlTag
 	}
 	/**
 	 * Retourne la liste des tags HTML valides
+	 * Method to get valid tag names
+	 * 
 	 * @return array
 	 */
 	public static function getValidTagsName()
@@ -1323,6 +1415,7 @@ class HtmlTag
 	}
 	/**
 	 * Méthode permettant de tester la validité d'un tag HTML
+	 * Method to test the validity of the tag name
 	 * 
 	 * @uses HtmlTag::getValidTagsName()
 	 * @param string nom du tag
@@ -1334,6 +1427,7 @@ class HtmlTag
 	}
 	/**
 	 * Méthode générale d'ajaout de définition de la valeur de l'objet ou d'ajout d'une valeur
+	 * Methode to set the value/add a value to the current element
 	 * 
 	 * @uses HtmlTag::_setValue()
 	 * @param mixed|HtmlTag
@@ -1344,6 +1438,9 @@ class HtmlTag
 		return $this->_setValue($_value);
 	}
 	/**
+	 * Méthode principale de gestion de l'ajout de contenu à l'objet en cours
+	 * Main method to add content to the current element
+	 * 
 	 * @uses HtmlTag::getDomElement()
 	 * @uses HtmlTag::getValueAttribute()
 	 * @uses HtmlTag::addAttribute()
@@ -1352,7 +1449,7 @@ class HtmlTag
 	 * @uses DOMDocument::createTextNode()
 	 * @uses DOMNode::appendChild()
 	 * @param mixed|HtmlTag
-	 * @param bool indique s'il faut ou non encoder les données
+	 * @param bool indique s'il faut ou non encoder les données  / indicates if the data has to be html encoded
 	 * @return bool
 	 */
 	protected function _setValue($_value, $_encodeHtmlEntities = true)
@@ -1378,6 +1475,7 @@ class HtmlTag
 	}
 	/**
 	 * Méthode permettant d'ajouter une valeur à l'élément HtmlTag
+	 * Method to add content to the current element
 	 *
 	 * @uses HtmlTag::setValue()
 	 * @param mixed|HtmlTag
@@ -1390,10 +1488,11 @@ class HtmlTag
 	/**
 	 * Méthode permettant de définir un contenu au format HTML
 	 * ou d'ajouter un contenu au format HTML
+	 * Method to add HTML code to the current element
 	 * 
 	 * @uses DOMDocument::loadXML()
 	 * @uses HtmlTag::addChildren()
-	 * @param string code html
+	 * @param string code html / HTML code
 	 * @return bool
 	 */
 	public function addHtml($_html)
@@ -1417,9 +1516,10 @@ class HtmlTag
 	}
 	/**
 	 * Méthode permettant de charger un fichier HTML
+	 * Method to add HTML code from a file
 	 * 
 	 * @uses HtmlTag::addHtml()
-	 * @param string chemin d'accès au fichier
+	 * @param string chemin d'accès au fichier / path to the file
 	 * @return bool true[false
 	 */
 	public function addHtmlFromFile($_fileName)
@@ -1436,7 +1536,7 @@ class HtmlTag
 	 * @uses HtmlTag::__construct()
 	 * @uses HtmlTag::addChildren()
 	 * @uses HtmlTag::addAttributes()
-	 * @param String source HTML
+	 * @param String source HTML / HTML code
 	 * @return bool true|false
 	 */
 	public function loadHtml($_html)
@@ -1459,12 +1559,14 @@ class HtmlTag
 			{
 				/**
 				 * Recherche du premier noeud correct dans le cas de commentaires en début de template
+				 * Find the first valid tag
 				 */
 				$item = 0;
 				while(!($d->childNodes->item($item) instanceof DOMElement))
 					$item++;
 				/**
 				 * Si un noeud est trouvé
+				 * If a valid node is found
 				 */
 				if($d->childNodes->item($item) instanceof DOMElement)
 				{
@@ -1473,14 +1575,17 @@ class HtmlTag
 					{
 						/**
 						 * Définition du tag de l'objet en cours
+						 * Defining the current tag name
 						 */
 						$this->setTagName($domElement->tagName);
 						/**
 						 * Ajout des attributs
+						 * Defining the current tag attributes
 						 */
 						$this->addDOMElementAttributes($domElement);
 						/**
 						 * Ajout des enfants
+						 * Adding the childnodes
 						 */
 						$this->addChildren($domElement);
 						return true;
@@ -1499,9 +1604,10 @@ class HtmlTag
 	}
 	/**
 	 * Méthode permettant de chargerle contenu HTML d'un fichier et d'initialiser l'objet en cours avec le contenu HTML
+	 * Method to add HTML code from a file
 	 * 
 	 * @uses HtmlTag::loadHtml()
-	 * @param string chemin complet d'accès au fichier
+	 * @param string chemin complet d'accès au fichier / path to file
 	 * @return bool true|false
 	 */
 	public function loadHtmlFromFile($_fileName)
@@ -1511,6 +1617,7 @@ class HtmlTag
 	/**
 	 * Méthode utilisée pour récupérer le contenu HTML d'un objet de type DOMNode
 	 * et de l'ajouter proprement à l'objet en cours
+	 * Method used to add the chilnodes of a DOMNode to current element recursively
 	 * 
 	 * @uses HtmlTag::getHtmlTagFromDOMElement()
 	 * @uses HtmlTag::setValue()
@@ -1546,13 +1653,15 @@ class HtmlTag
 	}
 	/**
 	 * Méthode permettant de supprimer un élément par son id ou un attribut et sa valeur définie
+	 * Method to delete an element
 	 *
 	 * @uses HtmlTag::getDomElement()
 	 * @uses DOMElement::getAttribute()
 	 * @uses DOMElement::hasAttribute()
 	 * @uses DOMElement::removeChild()
 	 * @uses DOMElement::item()
-	 * @param string l'id de l'élément
+	 * @param string valeur de l'attribut (id par défaut) / attribute value (id attribute by default)
+	 * @param string l'id de l'élément / attribute name to search by (id attribute by default)
 	 * @return bool true|false
 	 */
 	public function delValue($_attributeValue, $_attributeName = 'id')
@@ -1570,6 +1679,7 @@ class HtmlTag
 					/**
 					 * Lors de la suppression, le nombre d'enfants diminue d'1, de ce fait,
 					 * le pointeur $i pointe sur l'objet suivant n'existant plus, on le décrémente
+					 * Decremeting the pointer as the number of children has been decreased by one due to the removeChild call
 					 */
 					$i--;
 				}
@@ -1588,6 +1698,7 @@ class HtmlTag
 	}
 	/**
 	 * Méthode permettant de définir le body de la page
+	 * Method to set body element
 	 *
 	 * @param HtmlTagBody le body
 	 * @return HtmlTagBody le body
@@ -1598,6 +1709,7 @@ class HtmlTag
 	}
 	/**
 	 * Méthode de récupération du body
+	 * Method to get body element
 	 *
 	 * @uses HtmlTag::setBody()
 	 * @return Htmltag
@@ -1610,6 +1722,7 @@ class HtmlTag
 	}
 	/**
 	 * Méthode permettant d'ajouter un élément au body
+	 * Method to add element to the body element
 	 *
 	 * @uses HtmlTag::getBody()
 	 * @uses HtmlTag::addValue()
@@ -1622,6 +1735,7 @@ class HtmlTag
 	}
 	/**
 	 * Méthode permettant de définir le head de la page
+	 * Method to set head element
 	 *
 	 * @param HtmlTagHead le head
 	 * @return HtmlTagHead le head
@@ -1632,6 +1746,7 @@ class HtmlTag
 	}
 	/**
 	 * Méthode de récupération du head
+	 * Method to get head element
 	 *
 	 * @uses HtmlTag::setHead()
 	 * @return Htmltag
@@ -1644,6 +1759,7 @@ class HtmlTag
 	}
 	/**
 	 * Méthode permettant d'ajouter un élément au head
+	 * Method to add element to the head element
 	 *
 	 * @uses HtmlTag::getHead()
 	 * @uses HtmlTag::addValue()
@@ -1656,6 +1772,7 @@ class HtmlTag
 	}
 	/**
 	 * Méthode retournat l'objet DOMDocument
+	 * Method to get the current DOMDocument
 	 * 
 	 * @return DOMDocument
 	 */
@@ -1666,13 +1783,14 @@ class HtmlTag
 	/**
 	 * Méthode permettant de récupérer un objet de la classe HtmlTag par son id
 	 * représentant un élément existant dans le document en cours
+	 * Method to get an HtmlTag object by its id attribute value in the whole document
 	 * 
 	 * @uses HtmlTag::getDomElement()
 	 * @uses HtmlTag::getHead()
 	 * @uses HtmlTag::getBody()
 	 * @uses HtmlTag::findElementBy()
 	 * @uses HtmlTag::getHtmlTagFromDOMElement()
-	 * @param string id de l'élément HTML
+	 * @param string id de l'élément HTML / id attribute value
 	 * @return HtmlTag|null
 	 */
 	public static function getHtmlTagById($_elementId)
@@ -1689,11 +1807,12 @@ class HtmlTag
 	}
 	/**
 	 * Méthode permettant de récupérer un objet de la classe HtmlTag contenu par l'objet en cours
+	 * Method to get an HtmlTag object by its id attribute value contained by the current element
 	 * 
 	 * @uses HtmlTag::getDomElement()
 	 * @uses HtmlTag::findElementBy()
 	 * @uses HtmlTag::getHtmlTagFromDOMElement()
-	 * @param string la valeur de l'attribut id de l'élément
+	 * @param string la valeur de l'attribut id de l'élément / id attribute value
 	 * @return HtmlTag|null
 	 */
 	public function getElementById($_elementId)
@@ -1708,14 +1827,15 @@ class HtmlTag
 	}
 	/**
 	 * Méthode permettant de créer l'objet HtmlTag à partir d'un objet DOMElement
+	 * Method to create a HtmlTag from a DOMElement
 	 * 
 	 * @uses HtmlTag::createTag()
 	 * @uses HtmlTag::setDomElement()
 	 * @uses HtmlTag::addChildren()
 	 * @uses HtmlTag::getDomElementAttributes()
-	 * @param DOMElement
-	 * @param bool force l'ajout des enfants du noeud
-	 * @param bool force la redéfinition de l'attribut DomElement de l'objet créé
+	 * @param DOMElement DOMElement to use
+	 * @param bool force l'ajout des enfants du noeud / enables the addition of the DOMElement children to the created tag
+	 * @param bool force la redéfinition de l'attribut DomElement de l'objet créé / force the DOMElement object to the created element with the one passed in parameter
 	 * @return HtmlTag
 	 */
 	public static function getHtmlTagFromDOMElement(DOMElement $_domElement, $_addChildren = false, $_setDomElement = true)
@@ -1737,6 +1857,7 @@ class HtmlTag
 	}
 	/**
 	 * Méthode récursive de recherche d'un élément par son id
+	 * Method to find an element by its id attribute value or any other attribute 
 	 * 
 	 * @uses HtmlTag::findElementBy()
 	 * @uses HtmlTag::getHtmlTagFromDOMElement()
@@ -1745,11 +1866,11 @@ class HtmlTag
 	 * @uses DOMElement::hasChildNodes()
 	 * @uses DOMNamedNodeMap::item()
 	 * @uses DOMNodeList::item()
-	 * @param DOMElement
-	 * @param string valeur de l'attribute de l'élément recherché
-	 * @param string nom de l'attribut
-	 * @param bool|array si tableau=>va contenir tous les éléments répondant au critère
-	 * @return DOMElement|null
+	 * @param DOMElement the DOMElement
+	 * @param string valeur de l'attribute de l'élément recherché / attribute value to search
+	 * @param string nom de l'attribut / attribute value to search by
+	 * @param bool|array si tableau=>va contenir tous les éléments répondant au critère / reference to the array which will contain all the results
+	 * @return DOMElement|array array of HtmlTag or DOMElement
 	 */
 	public static function findElementBy(DOMElement $_domElement, $_value = '*', $_attributeName = 'id', &$_multiples = false)
 	{
@@ -1819,6 +1940,7 @@ class HtmlTag
 	}
 	/**
 	 * Méthode permettant de récupérer le nom de l'attribut définissant la "valeur" de la balise HtmlTag selon le tag défini
+	 * Method to know if the element has a specific attribute to contain its value or not 
 	 *
 	 * @uses HtmlTag::getTagName()
 	 * @return string
@@ -1921,6 +2043,7 @@ class HtmlTag
 	}
 	/**
 	 * Méthode retournant le nom du tag de la classe
+	 * Method to get tag name
 	 *
 	 * @return string html
 	 */
@@ -1930,6 +2053,7 @@ class HtmlTag
 	}
 	/**
 	 * Méthode retournant l'objet au format string
+	 * Method returning the string reprentation of the current object
 	 * 
 	 * @uses HtmlTag::toHtml()
 	 * @return string
@@ -1950,6 +2074,7 @@ class HtmlTag
 	}
 	/**
 	 * Méthode retournant le nom de la classe telle quelle
+	 * Method returning the class name
 	 *
 	 * @return string __CLASS__
 	 */

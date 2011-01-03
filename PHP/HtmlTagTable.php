@@ -1,6 +1,7 @@
 <?php
 /**
- * Classe mère pour toute classe permettant de générer des tableaux HtmlTag
+ * Classe mère permettant de générer des tableaux HtmlTag
+ * Root class to generate a table element
  * @package Common
  * @subpackage HtmlTag
  * @author Mikaël DELSOL
@@ -9,7 +10,8 @@
  * @date 15/12/2009
  */
 /**
- * Classe mère pour toute classe permettant de générer des tableaux HtmlTag
+ * Classe mère permettant de générer des tableaux HtmlTag
+ * Root class to generate a table element
  * @package Common
  * @subpackage HtmlTag
  * @author Mikaël DELSOL
@@ -20,7 +22,7 @@
 class HtmlTagTable extends HtmlTag
 {
 	/**
-	 * Constructeur de la classe
+	 * Constructeur de la classe / Class constructor
 	 * @see parent::__construct()
 	 * 
 	 * @uses HtmlTagTable::__tagName()
@@ -31,6 +33,9 @@ class HtmlTagTable extends HtmlTag
 		parent::__construct(HtmlTagTable::__tagName());
 	}
 	/**
+	 * Méthode pour définir le caption du tableau
+	 * Method to set caption element
+	 * 
 	 * @uses Htmltag::addvalue()
 	 * @param HtmlTag
 	 */
@@ -39,6 +44,9 @@ class HtmlTagTable extends HtmlTag
 		return $this->addvalue($_caption);
 	}
 	/**
+	 * Méthode pour définir le tbody du tableau
+	 * Method to set tbody element
+	 * 
 	 * @uses Htmltag::addvalue()
 	 * @param HtmlTagTableTPart
 	 */
@@ -47,6 +55,9 @@ class HtmlTagTable extends HtmlTag
 		return $this->addvalue($_tbody);
 	}
 	/**
+	 * Méthode pour définir le tfoot du tableau
+	 * Method to set tfoot element
+	 * 
 	 * @uses Htmltag::addvalue()
 	 * @param HtmlTagTableTPart
 	 */
@@ -55,6 +66,9 @@ class HtmlTagTable extends HtmlTag
 		return $this->addvalue($_tfoot);
 	}
 	/**
+	 * Méthode pour définir le thead du tableau
+	 * Method to set thead element
+	 * 
 	 * @uses Htmltag::addvalue()
 	 * @param HtmlTagTableTPart
 	 */
@@ -64,6 +78,7 @@ class HtmlTagTable extends HtmlTag
 	}
 	/**
 	 * Méthode retournant le nom du tag de la classe
+	 * Method returning the tag name
 	 *
 	 * @return string table
 	 */
@@ -73,6 +88,7 @@ class HtmlTagTable extends HtmlTag
 	}
 	/**
 	 * Méthode retournant le nom de la classe telle quelle
+	 * Method returning the class name
 	 *
 	 * @return string __CLASS__
 	 */

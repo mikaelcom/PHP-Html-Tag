@@ -1,6 +1,7 @@
 <?php
 /**
- * Classe mère pour toute classe permettant de générer des champs de type object
+ * Classe mère permettant de générer un élément HTML de type object
+ * Root class to generate an object element
  * @package Common
  * @subpackage HtmlTag
  * @author Mikaël DELSOL
@@ -9,7 +10,8 @@
  * @date 07/07/2010
  */
 /**
- * Classe mère pour toute classe permettant de générer des champs de type object
+ * Classe mère permettant de générer un élément HTML de type object
+ * Root class to generate an object element
  * @package Common
  * @subpackage HtmlTag
  * @author Mikaël DELSOL
@@ -20,7 +22,7 @@
 class HtmlTagObject extends HtmlTag
 {
 	/**
-	 * Constructeur de la classe
+	 * Constructeur de la classe / Class constructor
 	 * @see parent::__construct()
 	 * 
 	 * @uses HtmlTagObject::__tagName()
@@ -32,15 +34,16 @@ class HtmlTagObject extends HtmlTag
 	}
 	/**
 	 * Méthode permettant de définir une valeur d'un paramètre
+	 * Method to add a param to the current object element
 	 * 
 	 * @uses HtmlTagObject::setValue()
 	 * @uses HtmlTagParam::defineParamValue()
 	 * @uses HtmlTag::addValue()
-	 * @param string nom du paramètre
-	 * @param scalar valeur du paramètre
+	 * @param string nom du paramètre / parameter name
+	 * @param scalar valeur du paramètre / parameter value
 	 * @return bool true|false
 	 */
-	public function addParam($_paramName,$_paramValue)
+	public function addParam($_paramName, $_paramValue)
 	{
 		if(is_string($_paramName) && is_scalar($_paramValue))
 		{
@@ -52,6 +55,7 @@ class HtmlTagObject extends HtmlTag
 	}
 	/**
 	 * On s'assure que les éléments passés à l'objet soient bien du type param
+	 * Override method to secure added values
 	 * @see parent::setValue()
 	 * 
 	 * @param HtmlTagParam
@@ -63,6 +67,7 @@ class HtmlTagObject extends HtmlTag
 	}
 	/**
 	 * Méthode retournant le nom du tag de la classe
+	 * Method returning the tag name
 	 *
 	 * @return string object
 	 */
@@ -72,6 +77,7 @@ class HtmlTagObject extends HtmlTag
 	}
 	/**
 	 * Méthode retournant le nom de la classe telle quelle
+	 * Method returning the class name
 	 *
 	 * @return string __CLASS__
 	 */

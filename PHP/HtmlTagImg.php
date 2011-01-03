@@ -1,6 +1,7 @@
 <?php
 /**
- * Classe mère pour toute classe permettant de générer des champs de type img
+ * Classe mère permettant de générer un élément HTML de type img
+ * Root class to generate an img element
  * @package Common
  * @subpackage HtmlTag
  * @author Mikaël DELSOL
@@ -9,7 +10,8 @@
  * @date 28/06/2010
  */
 /**
- * Classe mère pour toute classe permettant de générer des champs de type img
+ * Classe mère permettant de générer un élément HTML de type img
+ * Root class to generate an img element
  * @package Common
  * @subpackage HtmlTag
  * @author Mikaël DELSOL
@@ -20,7 +22,7 @@
 class HtmlTagImg extends HtmlTag
 {
 	/**
-	 * Constructeur de la classe
+	 * Constructeur de la classe / Class constructor
 	 * @see parent::__construct()
 	 *
 	 * @uses HtmlTagImg::__tagName()
@@ -32,6 +34,7 @@ class HtmlTagImg extends HtmlTag
 	}
 	/**
 	 * Méthode permettant de définir l'attribut 'alt' de l'élément HtmlTag
+	 * Method to set alt attribute value
 	 *
 	 * @uses HtmlTagImg::addAttribute()
 	 * @param string la valeur de alt
@@ -43,6 +46,7 @@ class HtmlTagImg extends HtmlTag
 	}
 	/**
 	 * Méthode permettant de récupérer l'attribut 'alt' de l'élément HtmlTag
+	 * Method to get alt attribute value
 	 *
 	 * @uses HtmlTag::getAttribute()
 	 * @return string|null
@@ -53,6 +57,7 @@ class HtmlTagImg extends HtmlTag
 	}
 	/**
 	 * Méthode permettant de supprimer l'attribut 'alt' de l'élément HtmlTag
+	 * Method to unset alt attribute value
 	 *
 	 * @uses HtmlTag::unsetAttribute()
 	 * @return string|null
@@ -63,6 +68,7 @@ class HtmlTagImg extends HtmlTag
 	}
 	/**
 	 * Méthode permettant de définir l'attribut 'src' de l'élément HtmlTag
+	 * Method to set src attribute value
 	 *
 	 * @uses HtmlTagImg::addAttribute()
 	 * @param string la valeur de src
@@ -74,6 +80,7 @@ class HtmlTagImg extends HtmlTag
 	}
 	/**
 	 * Méthode permettant de récupérer l'attribut 'src' de l'élément HtmlTag
+	 * Method to get src attribute value
 	 *
 	 * @uses HtmlTag::getAttribute()
 	 * @return string|null
@@ -84,6 +91,7 @@ class HtmlTagImg extends HtmlTag
 	}
 	/**
 	 * Méthode permettant de supprimer l'attribut 'src' de l'élément HtmlTag
+	 * Method to unset src attribute value
 	 *
 	 * @uses HtmlTag::unsetAttribute()
 	 * @return string|null
@@ -94,6 +102,7 @@ class HtmlTagImg extends HtmlTag
 	}
 	/**
 	 * Méthode permettant de définir l'attribut 'width' de l'élément HtmlTag
+	 * Method to set width attribute value
 	 *
 	 * @uses HtmlTagImg::addAttribute()
 	 * @param string la valeur de width
@@ -105,6 +114,7 @@ class HtmlTagImg extends HtmlTag
 	}
 	/**
 	 * Méthode permettant de récupérer l'attribut 'width' de l'élément HtmlTag
+	 * Method to get width attribute value
 	 *
 	 * @uses HtmlTagImg::getAttribute()
 	 * @return string|null
@@ -115,6 +125,7 @@ class HtmlTagImg extends HtmlTag
 	}
 	/**
 	 * Méthode permettant de supprimer l'attribut 'width' de l'élément HtmlTag
+	 * Method to unset width attribute value
 	 *
 	 * @uses HtmlTag::unsetAttribute()
 	 * @return string|null
@@ -125,6 +136,7 @@ class HtmlTagImg extends HtmlTag
 	}
 	/**
 	 * Méthode permettant de définir l'attribut 'height' de l'élément HtmlTag
+	 * Method to set height attribute value
 	 *
 	 * @uses HtmlTagImg::addAttribute()
 	 * @param string la valeur de height
@@ -136,6 +148,7 @@ class HtmlTagImg extends HtmlTag
 	}
 	/**
 	 * Méthode permettant de récupérer l'attribut 'height' de l'élément HtmlTag
+	 * Method to get height attribute value
 	 *
 	 * @uses HtmlTag::getAttribute()
 	 * @return string|null
@@ -146,6 +159,7 @@ class HtmlTagImg extends HtmlTag
 	}
 	/**
 	 * Méthode permettant de supprimer l'attribut 'height' de l'élément HtmlTag
+	 * Method to unset height attribute value
 	 *
 	 * @uses HtmlTag::unsetAttribute()
 	 * @return string|null
@@ -156,6 +170,7 @@ class HtmlTagImg extends HtmlTag
 	}
 	/**
 	 * Gestion des particuliers d'attributs
+	 * Override method to manage specifics cases
 	 * @see HtmlTag::addAttribute()
 	 *
 	 * @param string nom de l'attribut
@@ -178,6 +193,7 @@ class HtmlTagImg extends HtmlTag
 	}
 	/**
 	 * Méthode retournant le nom du tag de la classe
+	 * Method returning the tag name
 	 *
 	 * @return string img
 	 */
@@ -187,6 +203,7 @@ class HtmlTagImg extends HtmlTag
 	}
 	/**
 	 * Méthode retournant le nom de la classe telle quelle
+	 * Method returning the class name
 	 *
 	 * @return string __CLASS__
 	 */

@@ -1,6 +1,7 @@
 <?php
 /**
- * Classe mère pour toute classe permettant de générer des champs de type map
+ * Classe mère permettant de générer un élément HTML de type map
+ * Root class to generate a map element
  * @package Common
  * @subpackage HtmlTag
  * @author Mikaël DELSOL
@@ -9,7 +10,8 @@
  * @date 07/07/2010
  */
 /**
- * Classe mère pour toute classe permettant de générer des champs de type map
+ * Classe mère permettant de générer un élément HTML de type map
+ * Root class to generate a map element
  * @package Common
  * @subpackage HtmlTag
  * @author Mikaël DELSOL
@@ -20,7 +22,7 @@
 class HtmlTagMap extends HtmlTag
 {
 	/**
-	 * Constructeur de la classe
+	 * Constructeur de la classe / Class constructor
 	 * @see parent::__construct()
 	 * 
 	 * @uses HtmlTagMap::__tagName()
@@ -32,10 +34,11 @@ class HtmlTagMap extends HtmlTag
 	}
 	/**
 	 * Méthode permettant de définir un élément area de la map par ses attributs
+	 * Method to create HtmlTagArea item
 	 * 
 	 * @uses HtmlTag::addAttributes()
 	 * @uses HtmlTagMap::setValue()
-	 * @param array les attributs de l'élément map à ajouter à la map
+	 * @param array les attributs de l'élément map à ajouter à la map / Attributes for the HtmlTagArea item
 	 * @return bool true|false
 	 */
 	public function addArea(array $_attributes)
@@ -45,6 +48,7 @@ class HtmlTagMap extends HtmlTag
 	}
 	/**
 	 * On s'assure que les éléments passés à la map soient bien du type area
+	 * Override method to secure the elements added to the current element
 	 * @see parent::setValue()
 	 * 
 	 * @param HtmlTagArea
@@ -56,6 +60,7 @@ class HtmlTagMap extends HtmlTag
 	}
 	/**
 	 * Méthode retournant le nom du tag de la classe
+	 * Method returning the tag name
 	 *
 	 * @return string map
 	 */
@@ -65,6 +70,7 @@ class HtmlTagMap extends HtmlTag
 	}
 	/**
 	 * Méthode retournant le nom de la classe telle quelle
+	 * Method returning the class name
 	 *
 	 * @return string __CLASS__
 	 */

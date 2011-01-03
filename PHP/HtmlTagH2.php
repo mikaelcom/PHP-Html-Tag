@@ -1,6 +1,7 @@
 <?php
 /**
- * Classe mère pour toute classe permettant de générer des champs de type h2
+ * Classe mère permettant de générer un élément HTML de type h2
+ * Root class to generate a h2 element
  * @package Common
  * @subpackage HtmlTag
  * @author Mikaël DELSOL
@@ -9,7 +10,8 @@
  * @date 06/07/2010
  */
 /**
- * Classe mère pour toute classe permettant de générer des champs de type h2
+ * Classe mère permettant de générer un élément HTML de type h2
+ * Root class to generate a h2 element
  * @package Common
  * @subpackage HtmlTag
  * @author Mikaël DELSOL
@@ -20,7 +22,7 @@
 class HtmlTagH2 extends HtmlTagH
 {
 	/**
-	 * Constructeur de la classe
+	 * Constructeur de la classe / Class constructor
 	 * @see parent::__construct()
 	 * 
 	 * @uses HtmlTagH2::__tagName()
@@ -32,6 +34,7 @@ class HtmlTagH2 extends HtmlTagH
 	}
 	/**
 	 * Méthode retournant le nom du tag de la classe
+	 * Method returning the tag name
 	 *
 	 * @uses HtmlTagH::H2
 	 * @return string HtmlTagH::H2
@@ -42,6 +45,7 @@ class HtmlTagH2 extends HtmlTagH
 	}
 	/**
 	 * Méthode retournant le nom de la classe telle quelle
+	 * Method returning the class name
 	 *
 	 * @return string __CLASS__
 	 */

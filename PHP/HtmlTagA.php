@@ -1,6 +1,7 @@
 <?php
 /**
- * Classe mère pour toute classe permettant de générer des champs de type a
+ * Classe mère permettant de générer un élément HTML de type a
+ * Root class to generate an anchor element
  * @package Common
  * @subpackage HtmlTag
  * @author Mikaël DELSOL
@@ -9,7 +10,8 @@
  * @date 28/06/2010
  */
 /**
- * Classe mère pour toute classe permettant de générer des champs de type a
+ * Classe mère permettant de générer un élément HTML de type a
+ * Root class to generate an anchor element
  * @package Common
  * @subpackage HtmlTag
  * @author Mikaël DELSOL
@@ -20,7 +22,7 @@
 class HtmlTagA extends HtmlTag
 {
 	/**
-	 * Constructeur de la classe
+	 * Constructeur de la classe / Class constructor
 	 * @see parent::__construct()
 	 * 
 	 * @uses HtmlTagA::__tagName()
@@ -32,6 +34,7 @@ class HtmlTagA extends HtmlTag
 	}
 	/**
 	 * Méthode permettant de définir l'attribut 'href' de l'élément HtmlTag
+	 * Method to set href attribute value
 	 *
 	 * @uses HtmlTag::addAttribute()
 	 * @param string la valeur de href
@@ -43,6 +46,7 @@ class HtmlTagA extends HtmlTag
 	}
 	/**
 	 * Méthode permettant de récupérer l'attribut 'href' de l'élément HtmlTag
+	 * Method to get href attribute value
 	 *
 	 * @uses HtmlTag::getAttribute()
 	 * @return string|null
@@ -53,6 +57,7 @@ class HtmlTagA extends HtmlTag
 	}
 	/**
 	 * Méthode permettant de supprimer l'attribut 'href' de l'élément HtmlTag
+	 * Method to unset href attribute value
 	 *
 	 * @uses HtmlTag::removeAttribute()
 	 * @return bool true|false
@@ -63,12 +68,13 @@ class HtmlTagA extends HtmlTag
 	}
 	/**
 	 * L'id et le name doivent avoir la même valeur
+	 * Id and Name attribute must have the same value
 	 * 
 	 * @param string
 	 * @param bool définir l'attribut name
 	 * @return bool true|false
 	 */
-	public function setId($_id,$_defineName = true)
+	public function setId($_id, $_defineName = true)
 	{
 		$setId = parent::setId($_id);
 		if($setId && $_defineName)
@@ -77,6 +83,7 @@ class HtmlTagA extends HtmlTag
 	}
 	/**
 	 * L'id et le name doivent avoir la même valeur
+	 * Id and Name attribute must have the same value
 	 * 
 	 * @uses HtmlTagA::setId()
 	 * @uses HtmlTag::setName()
@@ -84,7 +91,7 @@ class HtmlTagA extends HtmlTag
 	 * @param bool définir l'attribut id
 	 * @return bool true|false
 	 */
-	public function setName($_name,$_defineId = true)
+	public function setName($_name, $_defineId = true)
 	{
 		$setName = parent::setName($_name);
 		if($setName && $_defineId)
@@ -93,6 +100,7 @@ class HtmlTagA extends HtmlTag
 	}
 	/**
 	 * Méthode permettant de définir que le lien doit s'ouvrir dans une autre fenêtre
+	 * Specific method to force link to open in a new window
 	 * 
 	 * @uses HtmlTag::addAttribute()
 	 * @uses HtmlTag::getAttribute()
@@ -106,6 +114,7 @@ class HtmlTagA extends HtmlTag
 	}
 	/**
 	 * Méthode retournant le nom du tag de la classe
+	 * Method returning the tag name
 	 *
 	 * @return string a
 	 */
@@ -115,6 +124,7 @@ class HtmlTagA extends HtmlTag
 	}
 	/**
 	 * Méthode retournant le nom de la classe telle quelle
+	 * Method returning the class name
 	 *
 	 * @return string __CLASS__
 	 */

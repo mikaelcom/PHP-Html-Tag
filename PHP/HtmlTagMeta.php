@@ -1,6 +1,7 @@
 <?php
 /**
- * Classe mère pour toute classe permettant de générer des champs de type meta
+ * Classe mère permettant de générer un élément HTML de type meta
+ * Root class to generate a meta element
  * @package Common
  * @subpackage HtmlTag
  * @author Mikaël DELSOL
@@ -9,7 +10,8 @@
  * @date 28/06/2010
  */
 /**
- * Classe mère pour toute classe permettant de générer des champs de type meta
+ * Classe mère permettant de générer un élément HTML de type meta
+ * Root class to generate a meta element
  * @package Common
  * @subpackage HtmlTag
  * @author Mikaël DELSOL
@@ -20,7 +22,7 @@
 class HtmlTagMeta extends HtmlTag
 {
 	/**
-	 * Constructeur de la classe
+	 * Constructeur de la classe / Class constructor
 	 * @see parent::__construct()
 	 * 
 	 * @uses HtmlTagMeta::__tagName()
@@ -32,6 +34,7 @@ class HtmlTagMeta extends HtmlTag
 	}
 	/**
 	 * Méthode permettant de définir les valeurs principales de la meta
+	 * Method to set the attributes values of the meta tag at once
 	 *
 	 * @uses HtmlTag::addAttribute()
 	 * @uses HtmlTag::setValue()
@@ -48,6 +51,7 @@ class HtmlTagMeta extends HtmlTag
 	}
 	/**
 	 * Méthode retournant le nom du tag de la classe
+	 * Method returning the tag name
 	 *
 	 * @return string meta
 	 */
@@ -57,6 +61,7 @@ class HtmlTagMeta extends HtmlTag
 	}
 	/**
 	 * Méthode retournant le nom de la classe telle quelle
+	 * Method returning the class name
 	 *
 	 * @return string __CLASS__
 	 */

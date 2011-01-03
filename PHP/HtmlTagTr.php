@@ -1,6 +1,7 @@
 <?php
 /**
- * Classe mère pour toute classe permettant de générer des lignes d'un tableau HtmlTag
+ * Classe mère permettant de générer des lignes d'un tableau HtmlTag
+ * Root class to generate a tr element
  * @package Common
  * @subpackage HtmlTag
  * @author Mikaël DELSOL
@@ -9,7 +10,8 @@
  * @date 15/12/2009
  */
 /**
- * Classe mère pour toute classe permettant de générer des lignes d'un tableau HtmlTag
+ * Classe mère permettant de générer des lignes d'un tableau HtmlTag
+ * Root class to generate a tr element
  * @package Common
  * @subpackage HtmlTag
  * @author Mikaël DELSOL
@@ -20,7 +22,7 @@
 class HtmlTagTr extends HtmlTag
 {
 	/**
-	 * Constructeur de la classe
+	 * Constructeur de la classe / Class constructor
 	 * @see parent::__construct()
 	 * 
 	 * @uses HtmlTagTr::__tagName()
@@ -32,6 +34,7 @@ class HtmlTagTr extends HtmlTag
 	}
 	/**
 	 * Méthode permettant d'ajouter une cellule à la ligne
+	 * Method to add a table cell
 	 *
 	 * @uses HtmlTag::addValue()
 	 * @param HtmlTagTableCell
@@ -42,16 +45,17 @@ class HtmlTagTr extends HtmlTag
 	}
 	/**
 	 * Méthode permettant de facilement créer une cellule pour la ligne en cours
+	 * Method to create a cell
 	 *
 	 * @uses HtmlTag::setValue()
 	 * @uses HtmlTag::addAttributes()
 	 * @uses HtmlTagTableCell::TD
 	 * @uses HtmlTagTr::addCell()
-	 * @param mixed le contenu de la cellule
-	 * @param array les attributs à appliquer à la cellule
-	 * @param string type de la cellule (TH,TD)
+	 * @param mixed le contenu de la cellule / cell innerHTML
+	 * @param array les attributs à appliquer à la cellule / array of cell attributes
+	 * @param string type de la cellule (TH,TD) / cell type (th or td)
 	 */
-	public function createCell($_content,$_attributes = null,$_cellType = HtmlTagTableCell::TD)
+	public function createCell($_content, $_attributes = null, $_cellType = HtmlTagTableCell::TD)
 	{
 		$htmlCell = new HtmlTagTableCell($_cellType);
 		$htmlCell->setValue($_content);
@@ -61,6 +65,7 @@ class HtmlTagTr extends HtmlTag
 	}
 	/**
 	 * Méthode retournant le nom du tag de la classe
+	 * Method returning the tag name
 	 *
 	 * @return string tr
 	 */
@@ -70,6 +75,7 @@ class HtmlTagTr extends HtmlTag
 	}
 	/**
 	 * Méthode retournant le nom de la classe telle quelle
+	 * Method returning the class name
 	 *
 	 * @return string __CLASS__
 	 */

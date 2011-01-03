@@ -1,6 +1,7 @@
 <?php
 /**
- * Classe mère pour toute classe permettant de générer des champs de type label
+ * Classe mère permettant de générer un élément HTML de type label
+ * Root class to generate a label element
  * @package Common
  * @subpackage HtmlTag
  * @author Mikaël DELSOL
@@ -9,7 +10,8 @@
  * @date 06/07/2010
  */
 /**
- * Classe mère pour toute classe permettant de générer des champs de type label
+ * Classe mère permettant de générer un élément HTML de type label
+ * Root class to generate a label element
  * @package Common
  * @subpackage HtmlTag
  * @author Mikaël DELSOL
@@ -20,7 +22,7 @@
 class HtmlTagLabel extends HtmlTag
 {
 	/**
-	 * Constructeur de la classe
+	 * Constructeur de la classe / Class constructor
 	 * @see parent::__construct()
 	 * 
 	 * @uses HtmlTagLabel::__tagName()
@@ -32,6 +34,7 @@ class HtmlTagLabel extends HtmlTag
 	}
 	/**
 	 * Méthode permettant de définir la valeur de l'attribut for
+	 * Method to set for attribute value
 	 * 
 	 * @uses HtmlTag::addAttribute()
 	 * @param string
@@ -42,7 +45,19 @@ class HtmlTagLabel extends HtmlTag
 		return is_string($_for)?$this->addAttribute('for',$_for,true):false;
 	}
 	/**
+	 * Méthode permettant de récupérer l'attribut 'for' de l'élément HtmlTag
+	 * Method to get for attribute value
+	 *
+	 * @uses HtmlTag::getAttribute()
+	 * @return string|null
+	 */
+	public function getFor()
+	{
+		return $this->getAttribute('for');
+	}
+	/**
 	 * Méthode permettant de supprimer l'attribut for
+	 * Method to unsset for attribute value
 	 * 
 	 * @uses HtmlTag::removeAttribute()
 	 * @return bool true|false
@@ -53,6 +68,7 @@ class HtmlTagLabel extends HtmlTag
 	}
 	/**
 	 * Méthode retournant le nom du tag de la classe
+	 * Method returning the tag name
 	 *
 	 * @return string label
 	 */
@@ -62,6 +78,7 @@ class HtmlTagLabel extends HtmlTag
 	}
 	/**
 	 * Méthode retournant le nom de la classe telle quelle
+	 * Method returning the class name
 	 *
 	 * @return string __CLASS__
 	 */

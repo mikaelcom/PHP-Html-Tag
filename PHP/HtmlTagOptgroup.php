@@ -1,6 +1,7 @@
 <?php
 /**
- * Classe mère pour toute classe permettant de générer des champs de type optgroup
+ * Classe mère permettant de générer un élément HTML de type optgroup
+ * Root class to generate an optgroup element
  * @package Common
  * @subpackage HtmlTag
  * @author Mikaël DELSOL
@@ -9,7 +10,8 @@
  * @date 06/07/2010
  */
 /**
- * Classe mère pour toute classe permettant de générer des champs de type optgroup
+ * Classe mère permettant de générer un élément HTML de type optgroup
+ * Root class to generate an optgroup element
  * @package Common
  * @subpackage HtmlTag
  * @author Mikaël DELSOL
@@ -20,7 +22,7 @@
 class HtmlTagOptgroup extends HtmlTag
 {
 	/**
-	 * Constructeur de la classe
+	 * Constructeur de la classe / Class constructor
 	 * @see parent::__construct()
 	 * 
 	 * @uses HtmlTagOptgroup::__tagName()
@@ -32,6 +34,7 @@ class HtmlTagOptgroup extends HtmlTag
 	}
 	/**
 	 * Méthode permettant de définir l'attribut 'label' de l'élément HtmlTag
+	 * Method to set label attribute value
 	 *
 	 * @uses HtmlTag::addAttribute()
 	 * @param string la valeur de label
@@ -43,6 +46,7 @@ class HtmlTagOptgroup extends HtmlTag
 	}
 	/**
 	 * Méthode permettant de récupérer l'attribut 'label' de l'élément HtmlTag
+	 * Method to get label attribute value
 	 *
 	 * @uses HtmlTag::getAttribute()
 	 * @return string|null
@@ -53,6 +57,7 @@ class HtmlTagOptgroup extends HtmlTag
 	}
 	/**
 	 * Méthode permettant de supprimer l'attribut 'label' de l'élément HtmlTag
+	 * Method to unset label attribute value
 	 *
 	 * @uses HtmlTag::removeAttribute()
 	 * @return bool true|false
@@ -63,6 +68,7 @@ class HtmlTagOptgroup extends HtmlTag
 	}
 	/**
 	 * On s'assure que les éléments passés à l'optgroup soient bien du type option
+	 * Override method to secure added values
 	 * @see parent::setValue()
 	 * 
 	 * @param HtmlTagOption
@@ -74,6 +80,7 @@ class HtmlTagOptgroup extends HtmlTag
 	}
 	/**
 	 * Méthode retournant le nom du tag de la classe
+	 * Method returning the tag name
 	 *
 	 * @return string optgroup
 	 */
@@ -83,6 +90,7 @@ class HtmlTagOptgroup extends HtmlTag
 	}
 	/**
 	 * Méthode retournant le nom de la classe telle quelle
+	 * Method returning the class name
 	 *
 	 * @return string __CLASS__
 	 */

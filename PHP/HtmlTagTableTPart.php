@@ -1,6 +1,7 @@
 <?php
 /**
- * Classe mère pour toute classe permettant de générer une partie (thead, tbody, tfoot) d'un tableau HtmlTag
+ * Classe mère permettant de générer une partie (thead, tbody, tfoot) d'un tableau HtmlTag
+ * Root class to generate a table part element as thead, tbody or tfoot
  * @package Common
  * @subpackage HtmlTag
  * @author Mikaël DELSOL
@@ -9,7 +10,8 @@
  * @date 15/12/2009
  */
 /**
- * Classe mère pour toute classe permettant de générer une partie (thead, tbody, tfoot) d'un tableau HtmlTag
+ * Classe mère permettant de générer une partie (thead, tbody, tfoot) d'un tableau HtmlTag
+ * Root class to generate a table part element as thead, tbody or tfoot
  * @package Common
  * @subpackage HtmlTag
  * @author Mikaël DELSOL
@@ -21,21 +23,24 @@ class HtmlTagTableTPart extends HtmlTag
 {
 	/**
 	 * Nom du tag pour le thead du tableau
+	 * Tag name to the table thead part
 	 * @var string
 	 */
 	const THEAD = 'thead';
 	/**
 	 * Nom du tag pour le tbody du tableau
+	 * Tag name to the table thead part
 	 * @var string
 	 */
 	const TBODY = 'tbody';
 	/**
 	 * Nom du tag pour le tfoot du tableau
+	 * Tag name to the table thead part
 	 * @var string
 	 */
 	const TFOOT = 'tfoot';
 	/**
-	 * Constructeur de la classe
+	 * Constructeur de la classe / Class constructor
 	 * @see parent::__construct()
 	 * 
 	 * @return HtmlTagTableTPart
@@ -47,6 +52,7 @@ class HtmlTagTableTPart extends HtmlTag
 	}
 	/**
 	 * Méthode permettant d'ajouter une ligne à la partie HtmlTag du tableau
+	 * Method to add a line object
 	 *
 	 * @uses HtmlTag::addValue()
 	 * @param HtmlTagTr
@@ -57,6 +63,7 @@ class HtmlTagTableTPart extends HtmlTag
 	}
 	/**
 	 * Méthode retournant le nom du tag de la classe
+	 * Method returning the list of possible tag names
 	 *
 	 * @uses HtmlTagTableTPart::THEAD
 	 * @uses HtmlTagTableTPart::TBODY
@@ -69,6 +76,7 @@ class HtmlTagTableTPart extends HtmlTag
 	}
 	/**
 	 * Méthode retournant le nom de la classe telle quelle
+	 * Method returning the class name
 	 *
 	 * @return string __CLASS__
 	 */

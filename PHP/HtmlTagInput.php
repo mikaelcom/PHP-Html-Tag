@@ -1,6 +1,7 @@
 <?php
 /**
- * Classe mère pour toute classe permettant de générer des champs de type input
+ * Classe mère permettant de générer un élément HTML de type input
+ * Root class to generate an input element
  * @package Common
  * @subpackage HtmlTag
  * @author Mikaël DELSOL
@@ -9,7 +10,8 @@
  * @date 19/12/2009
  */
 /**
- * Classe mère pour toute classe permettant de générer des champs de type input
+ * Classe mère permettant de générer un élément HTML de type input
+ * Root class to generate an input element
  * @package Common
  * @subpackage HtmlTag
  * @author Mikaël DELSOL
@@ -70,7 +72,7 @@ class HtmlTagInput extends HtmlTag
 	 */
 	const RESET = 'reset';
 	/**
-	 * Constructeur de la classe
+	 * Constructeur de la classe / Class constructor
 	 * @see parent::__construct()
 	 * 
 	 * @uses HtmlTagInput::__tagName()
@@ -89,6 +91,7 @@ class HtmlTagInput extends HtmlTag
 	}
 	/**
 	 * Méthode permettant d'indiquer que l'élément de type checkbox est coché
+	 * Method to set checked attribute value for checkbox or radio elements
 	 * 
 	 * @uses Htmltag::addAttribute()
 	 * @uses HtmltagInput::isBool()
@@ -102,6 +105,7 @@ class HtmlTagInput extends HtmlTag
 	}
 	/**
 	 * Méthode permettant d'indiquer que l'élément de type checkbox n'est pas coché
+	 * Method to unset checked attribute value for checkbox or radio elements
 	 * 
 	 * @uses Htmltag::removeAttribute()
 	 * @uses HtmltagInput::isBool()
@@ -113,6 +117,7 @@ class HtmlTagInput extends HtmlTag
 	}
 	/**
 	 * Méthode permettant de savoir si le champ est de type booléen ou non (checkbox, radio)
+	 * Method to check if the current element is a "boolean" element
 	 * 
 	 * @uses HtmlTagInput::getType()
 	 * @uses HtmlTagInput::CHECKBOX
@@ -125,6 +130,7 @@ class HtmlTagInput extends HtmlTag
 	}
 	/**
 	 * Permet de vérifier le type de l'élément
+	 * Override method to check current element type attribute value
 	 * @see parent::setType()
 	 * 
 	 * @uses HtmlTagInput::__className()
@@ -138,6 +144,7 @@ class HtmlTagInput extends HtmlTag
 	}
 	/**
 	 * Méthode retournant le nom du tag de la classe
+	 * Method returning the tag name
 	 *
 	 * @return string input
 	 */
@@ -147,6 +154,7 @@ class HtmlTagInput extends HtmlTag
 	}
 	/**
 	 * Méthode retournant le nom de la classe telle quelle
+	 * Method returning the class name
 	 *
 	 * @return string __CLASS__
 	 */

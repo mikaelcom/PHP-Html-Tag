@@ -132,7 +132,7 @@ class HtmlTag
 	 * @param string reset du domDocument / allows to reset the DOMDocument and the root HTML element 
 	 * @return HtmlTag
 	 */
-	public function __construct($_tagName, $_lang = null, $_encoding = HtmlTag::DEFAULT_ENCODING, $_reset = false)
+	public function __construct($_tagName,$_lang = null,$_encoding = HtmlTag::DEFAULT_ENCODING,$_reset = false)
 	{
 		/**
 		 * Initialisation dans tous les cas du DOMDocument
@@ -192,7 +192,7 @@ class HtmlTag
 	 * @param string contenu du document / file content
 	 * @return bool true|false
 	 */
-	public static function loadDomDocument($_fileContent, $_resetDomDocument = false)
+	public static function loadDomDocument($_fileContent,$_resetDomDocument = false)
 	{
 		if(trim($_fileContent) != '')
 		{
@@ -261,7 +261,7 @@ class HtmlTag
 	 * @param string le charset du contenu/script / charset value
 	 * @return HtmlTag la balise script
 	 */
-	public static function createScript($_src = '', $_attributes = null, $_addtoHtml = null, $_content = '', $_charset = '')
+	public static function createScript($_src = '',$_attributes = null,$_addtoHtml = null,$_content = '',$_charset = '')
 	{
 		$s = new HtmlTagScript();
 		if(!empty($_src))
@@ -290,7 +290,7 @@ class HtmlTag
 	 * @param HtmlTag l'élément auquel ajouté la balise link si nécessaire / existing element that will contain the script element crated
 	 * @return HtmlTag la balise link
 	 */
-	public static function createCssLink($_href, $_attributes = null, $_addtoHtml = null)
+	public static function createCssLink($_href,$_attributes = null,$_addtoHtml = null)
 	{
 		$l = new HtmlTagLink();
 		$l->setHref($_href);
@@ -316,7 +316,7 @@ class HtmlTag
 	 * @param HtmlTag l'élément auquel ajouté la balise link si nécessaire / existing element that will contain the script element crated
 	 * @return HtmlTag la balise meta
 	 */
-	public static function createMeta($_type, $_typeName, $_value, $_attributes = null, $_addtoHtml = null)
+	public static function createMeta($_type,$_typeName,$_value,$_attributes = null,$_addtoHtml = null)
 	{
 		$m = new HtmlTagMeta();
 		$m->define($_type,$_typeName,$_value);
@@ -338,7 +338,7 @@ class HtmlTag
 	 * @param HtmlTag l'élément auquel ajouté la balise link si nécessaire / existing element that will contain the script element crated
 	 * @return HtmlTag la balise meta
 	 */
-	public static function createTitle($_value, $_attributes = null, $_addtoHtml = null)
+	public static function createTitle($_value,$_attributes = null,$_addtoHtml = null)
 	{
 		$t = new HtmlTagTitle();
 		$t->setValue($_value);
@@ -364,7 +364,7 @@ class HtmlTag
 	 * @param HtmlTag l'élément auquel ajouté la balise link si nécessaire / existing element that will contain the script element crated
 	 * @return HtmlTag la balise meta
 	 */
-	public static function createImg($_src, $_alt, $_title = '', $_attributes = null, $_addtoHtml = null)
+	public static function createImg($_src,$_alt,$_title = '',$_attributes = null,$_addtoHtml = null)
 	{
 		$i = new HtmlTagImg();
 		$i->setSrc($_src);
@@ -391,7 +391,7 @@ class HtmlTag
 	 * @param HtmlTag l'élément auquel ajouté la balise link si nécessaire / existing element that will contain the script element crated
 	 * @return HtmlTag la balise label
 	 */
-	public static function createLabel($_label, $_for = '', $_attributes = null, $_addtoHtml = null)
+	public static function createLabel($_label,$_for = '',$_attributes = null,$_addtoHtml = null)
 	{
 		$l = new HtmlTagLabel();
 		$l->setValue($_label);
@@ -417,7 +417,7 @@ class HtmlTag
 	 * @param HtmlTag l'élément auquel ajouté la balise link si nécessaire / existing element that will contain the script element crated
 	 * @return HtmlTag la balise label
 	 */
-	public static function createA($_href, $_anchor, $_attributes = null, $_addtoHtml = null)
+	public static function createA($_href,$_anchor,$_attributes = null,$_addtoHtml = null)
 	{
 		$a = new HtmlTagA();
 		$a->setValue($_anchor);
@@ -443,7 +443,7 @@ class HtmlTag
 	 * @param HtmlTag* élément auquel ajouter le nouvel élément / existing element that will contain the script element crated
 	 * @return HtmlTag|null
 	 */
-	public static function &createTag($_tagName, array $_tagAttributes = array(), $_tagType = null, $_addTagTo = null)
+	public static function &createTag($_tagName,array $_tagAttributes = array(),$_tagType = null,$_addTagTo = null)
 	{
 		$htmlTagObject = null;
 		if(is_string($_tagName) && class_exists(HtmlTag::__className() . ucfirst(strtolower($_tagName))))
@@ -565,7 +565,7 @@ class HtmlTag
 	 * @param bool appel depuis une méthode de HtmlTag pour définir un attribut spécifique / defines if the calling method is the attribute method or not
 	 * @return bool true|false selon la validité de l'attribut / depends of the validity of the attribute
 	 */
-	public function addAttribute($_attributeName, $_attributeValue, $_specificAttributeMethodCall = false)
+	public function addAttribute($_attributeName,$_attributeValue,$_specificAttributeMethodCall = false)
 	{
 		/**
 		 * Si nom de l'attribut valide et valeur de type chaine de caractères|tableau de valeurs
@@ -583,7 +583,7 @@ class HtmlTag
 					if(is_scalar($value) && is_scalar($key))
 					{
 						$value = preg_replace('/(\s+)/',' ',trim($value));
-						switch ($_attributeName)
+						switch($_attributeName)
 						{
 							case 'style':
 								$attributeValue .= trim($key) . ':' . $value . ';';
@@ -639,7 +639,7 @@ class HtmlTag
 	 * @param mixed|HtmlTag valeur de l'élément HtmlTag / attribute value
 	 * @return bool true|false selon la validité de l'attribut
 	 */
-	public function setAttribute($_attributeName, $_attributeValue)
+	public function setAttribute($_attributeName,$_attributeValue)
 	{
 		return $this->addAttribute($_attributeName,$_attributeValue);
 	}
@@ -768,7 +768,7 @@ class HtmlTag
 			if($_domElement->hasAttributes())
 			{
 				$attributes = $_domElement->attributes;
-				for($j = 0;; $j++)
+				for($j = 0;;$j++)
 				{
 					if($attribute = $attributes->item($j))
 						$domElementAttributes[$attribute->nodeName] = iconv('UTF-8','ISO-8859-1',$attribute->nodeValue);
@@ -1245,7 +1245,7 @@ class HtmlTag
 	 * @param string nom de la fonction de prise en charge de l'événement / js event function handler
 	 * @return bool true|false
 	 */
-	private function setDomEventHandler($_domEvent, $_eventHandler)
+	private function setDomEventHandler($_domEvent,$_eventHandler)
 	{
 		return $this->addAttribute($_domEvent,$_eventHandler);
 	}
@@ -1285,7 +1285,7 @@ class HtmlTag
 		 * Création de la balise elle-même
 		 */
 		HtmlTag::$domDocument?$this->setDomElement(HtmlTag::$domDocument->createElement(trim($_tagName))):null;
-		switch ($_tagName)
+		switch($_tagName)
 		{
 			case 'a':
 			case 'abbr':
@@ -1452,7 +1452,7 @@ class HtmlTag
 	 * @param bool indique s'il faut ou non encoder les données  / indicates if the data has to be html encoded
 	 * @return bool
 	 */
-	protected function _setValue($_value, $_encodeHtmlEntities = true)
+	protected function _setValue($_value,$_encodeHtmlEntities = true)
 	{
 		try
 		{
@@ -1463,6 +1463,10 @@ class HtmlTag
 				$this->getDomElement()->appendChild(HtmlTag::$domDocument->createTextNode($_encodeHtmlEntities?htmlentities($_value === ' '?'&nbsp;':$_value,ENT_QUOTES,null,false):$_value));
 			elseif(($_value instanceof HtmlTag) && $this->getDomElement())
 				$this->getDomElement()->appendChild($_value->getDomElement());
+			elseif(($_value instanceof DOMComment) && $this->getDomElement())
+				$this->getDomElement()->appendChild(new DOMComment(trim($_value->data)));
+			elseif(($_value instanceof DOMText) && $this->getDomElement())
+				$this->getDomElement()->appendChild(new DOMText(trim($_value->wholeText)));
 			elseif(is_array($_value))
 				while(list(,$htmlTag) = each($_value))
 					$this->_setValue($htmlTag,$_encodeHtmlEntities);
@@ -1634,9 +1638,13 @@ class HtmlTag
 		$nbChildNodes = $childNodes->length;
 		if($nbChildNodes > 0)
 		{
-			for($i = 0; $i < $nbChildNodes; $i++)
+			for($i = 0;$i < $nbChildNodes;$i++)
 			{
 				$child = $childNodes->item($i);
+				/**
+				 * Si le noeud est un tag HTML reconnu
+				 * If the current node represents a known HTML tag
+				 */
 				if(($child instanceof DOMElement) && ($tag = HtmlTag::getHtmlTagFromDOMElement($child,false,false)))
 				{
 					$this->setValue($tag);
@@ -1645,6 +1653,18 @@ class HtmlTag
 					else
 						$tag->addChildren($child);
 				}
+				/**
+				 * Sinon si le noeud est un commentaire
+				 * Otherwise the current node is a comment
+				 */
+				elseif(HTML_TAG_KEEP_COMMENTS == true && ($child instanceof DOMComment) && trim($child->data) != '')
+					$this->setValue($child);
+				/**
+				 * Sinon si le noeud est un texte non vide
+				 * Otherwise the current node is a text part not empty
+				 */
+				elseif(($child instanceof DOMText) && trim($child->wholeText) != '')
+					$this->setValue($child);
 			}
 			return true;
 		}
@@ -1664,14 +1684,14 @@ class HtmlTag
 	 * @param string l'id de l'élément / attribute name to search by (id attribute by default)
 	 * @return bool true|false
 	 */
-	public function delValue($_attributeValue, $_attributeName = 'id')
+	public function delValue($_attributeValue,$_attributeName = 'id')
 	{
 		if($this->getDomElement() && $this->getDomElement()->childNodes->length > 0)
 		{
 			$childNodes = $this->getDomElement()->childNodes;
 			$nbChildNodes = $childNodes->length;
 			$delete = true;
-			for($i = 0; $i < $nbChildNodes; $i++)
+			for($i = 0;$i < $nbChildNodes;$i++)
 			{
 				if($childNodes->item($i) && $childNodes->item($i)->hasAttribute($_attributeName) && $childNodes->item($i)->getAttribute($_attributeName) == $_attributeValue)
 				{
@@ -1838,7 +1858,7 @@ class HtmlTag
 	 * @param bool force la redéfinition de l'attribut DomElement de l'objet créé / force the DOMElement object to the created element with the one passed in parameter
 	 * @return HtmlTag
 	 */
-	public static function getHtmlTagFromDOMElement(DOMElement $_domElement, $_addChildren = false, $_setDomElement = true)
+	public static function getHtmlTagFromDOMElement(DOMElement $_domElement,$_addChildren = false,$_setDomElement = true)
 	{
 		$type = null;
 		$attributesArray = HtmlTag::_getDomElementAttributes($_domElement);
@@ -1872,7 +1892,7 @@ class HtmlTag
 	 * @param bool|array si tableau=>va contenir tous les éléments répondant au critère / reference to the array which will contain all the results
 	 * @return DOMElement|array array of HtmlTag or DOMElement
 	 */
-	public static function findElementBy(DOMElement $_domElement, $_value = '*', $_attributeName = 'id', &$_multiples = false)
+	public static function findElementBy(DOMElement $_domElement,$_value = '*',$_attributeName = 'id',&$_multiples = false)
 	{
 		if($_domElement->hasChildNodes())
 		{
@@ -1881,7 +1901,7 @@ class HtmlTag
 			$forMultiples = is_array($_multiples);
 			if($nbChildNodes)
 			{
-				for($i = 0; $i < $nbChildNodes; $i++)
+				for($i = 0;$i < $nbChildNodes;$i++)
 				{
 					if($childNodes->item($i) instanceof DOMElement)
 					{
@@ -1948,7 +1968,7 @@ class HtmlTag
 	private function getValueAttribute()
 	{
 		$valueAttribute = '';
-		switch ($this->getTagName())
+		switch($this->getTagName())
 		{
 			case 'abbr':
 			case 'acronym':
@@ -2068,8 +2088,7 @@ class HtmlTag
 			return $html;
 		}
 		catch(Exception $e)
-		{
-		}
+		{}
 		return '';
 	}
 	/**

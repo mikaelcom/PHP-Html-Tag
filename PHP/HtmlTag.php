@@ -190,18 +190,20 @@ class HtmlTag
 	 * @uses DOMNode::hasAttributes()
 	 * @uses DOMNamedNodeMap::item()
 	 * @param string contenu du document / file content
+	 * @param bool réinitialise tout le document / reset whole document
+	 * @param string encodage du texte / text encoding
 	 * @return bool true|false
 	 */
-	public static function loadDomDocument($_fileContent,$_resetDomDocument = false)
+	public static function loadDomDocument($_fileContent,$_resetDomDocument = false,$_encodingDocument = HtmlTag::DEFAULT_ENCODING)
 	{
 		if(trim($_fileContent) != '')
 		{
 			$fileContent = str_replace(array('&','&amp;amp;'),'&amp;',trim($_fileContent));
 			if(strpos($fileContent,'<?xml') !== 0 && strpos($fileContent,'<?xml') <= 0)
-				$fileContent = '<?xml version="1.0" encoding="ISO-8859-1"?>' . "\r\n" . $fileContent;
+				$fileContent = '<?xml version="1.0" encoding="' . $_encodingDocument . '"?>' . "\r\n" . $fileContent;
 			if(!empty($fileContent))
 			{
-				$domDocument = new DOMDocument('1.0','ISO-8859-1');
+				$domDocument = new DOMDocument('1.0',$_encodingDocument);
 				if($domDocument->loadXML($fileContent))
 				{
 					if($_resetDomDocument)
@@ -209,6 +211,7 @@ class HtmlTag
 						HtmlTag::$domDocument = null;
 						HtmlTag::$htmlDocument = null;
 						HtmlTag::$declaredIds = array();
+						new HtmlTag('',null,$_encodingDocument);
 					}
 					/**
 					 * Tentative de récupération de la partie head
@@ -239,11 +242,13 @@ class HtmlTag
 	 * 
 	 * @uses HtmlTag::loadDomDocument()
 	 * @param string chemin complet d'accès au fichier / path to file
+	 * @param bool réinitialise tout le document / reset whole document
+	 * @param string encodage du texte / text encoding
 	 * @return bool true|false
 	 */
-	public static function loadDomDocumentFile($_fileName)
+	public static function loadDomDocumentFile($_fileName,$_resetDomDocument = false,$_encodingDocument = HtmlTag::DEFAULT_ENCODING)
 	{
-		return is_file($_fileName)?HtmlTag::loadDomDocument(file_get_contents($_fileName)):false;
+		return is_file($_fileName)?HtmlTag::loadDomDocument(file_get_contents($_fileName),$_resetDomDocument,$_encodingDocument):false;
 	}
 	/**
 	 * Méthode permettant de facilement créer une élément de type script/javascript
@@ -501,7 +506,7 @@ class HtmlTag
 		{
 			if($_sendHeader && !headers_sent())
 				header('Content-Type: application/xhtml+xml');
-			return '<?xml version="1.0" encoding="' . HtmlTag::$domDocument->encoding . '"?>' . "\r\n" . str_replace(array('&','&amp;amp;'),'&amp;',$this->toHtml(false));
+			return '<?xml version="1.0" encoding="' . HtmlTag::getEncoding() . '"?>' . "\r\n" . str_replace(array('&','&amp;amp;'),'&amp;',$this->toHtml(false));
 		}
 		else
 			return '';
@@ -626,7 +631,7 @@ class HtmlTag
 			 * Sinon ajout de l'attribut à l'élément
 			 */
 			else
-				return $this->getDomElement()->setAttribute($_attributeName,htmlentities($attributeValue,ENT_QUOTES,null,false));
+				return $this->getDomElement()->setAttribute($_attributeName,htmlentities($attributeValue,ENT_QUOTES,HtmlTag::getEncoding(),false));
 		}
 		else
 			return false;
@@ -771,7 +776,7 @@ class HtmlTag
 				for($j = 0;;$j++)
 				{
 					if($attribute = $attributes->item($j))
-						$domElementAttributes[$attribute->nodeName] = iconv('UTF-8','ISO-8859-1',$attribute->nodeValue);
+						$domElementAttributes[$attribute->nodeName] = (HtmlTag::getEncoding() == HtmlTag::DEFAULT_ENCODING)?iconv('UTF-8',HtmlTag::DEFAULT_ENCODING,$attribute->nodeValue):$attribute->nodeValue;
 					else
 						break;
 				}
@@ -1449,24 +1454,23 @@ class HtmlTag
 	 * @uses DOMDocument::createTextNode()
 	 * @uses DOMNode::appendChild()
 	 * @param mixed|HtmlTag
-	 * @param bool indique s'il faut ou non encoder les données  / indicates if the data has to be html encoded
+	 * @param bool indique s'il faut ou non encoder les données / indicates if the data has to be html encoded
 	 * @return bool
 	 */
 	protected function _setValue($_value,$_encodeHtmlEntities = true)
 	{
 		try
 		{
-			$_value = is_scalar($_value)?trim($_value):$_value;
 			if(is_scalar($_value) && $this->getValueAttribute() != '')
-				$this->addAttribute($this->getValueAttribute(),$_encodeHtmlEntities?htmlentities($_value,ENT_QUOTES,null,false):$_value,true);
+				$this->addAttribute($this->getValueAttribute(),$_encodeHtmlEntities?htmlentities($_value,ENT_QUOTES,HtmlTag::getEncoding(),false):$_value,true);
 			elseif(is_scalar($_value) && !empty($_value) && $this->getHasInnerHtml() && $this->getDomElement())
-				$this->getDomElement()->appendChild(HtmlTag::$domDocument->createTextNode($_encodeHtmlEntities?htmlentities($_value === ' '?'&nbsp;':$_value,ENT_QUOTES,null,false):$_value));
+				$this->getDomElement()->appendChild(HtmlTag::$domDocument->createTextNode($_encodeHtmlEntities?htmlentities($_value === ' '?'&nbsp;':$_value,ENT_QUOTES,HtmlTag::getEncoding(),false):$_value));
 			elseif(($_value instanceof HtmlTag) && $this->getDomElement())
 				$this->getDomElement()->appendChild($_value->getDomElement());
 			elseif(($_value instanceof DOMComment) && $this->getDomElement())
-				$this->getDomElement()->appendChild(new DOMComment(trim($_value->data)));
+				$this->getDomElement()->appendChild(new DOMComment($_value->data));
 			elseif(($_value instanceof DOMText) && $this->getDomElement())
-				$this->getDomElement()->appendChild(new DOMText(trim($_value->wholeText)));
+				$this->_setValue(HtmlTag::getEncoding() == HtmlTag::DEFAULT_ENCODING?iconv('UTF-8',HtmlTag::DEFAULT_ENCODING,$_value->wholeText):$_value->wholeText);
 			elseif(is_array($_value))
 				while(list(,$htmlTag) = each($_value))
 					$this->_setValue($htmlTag,$_encodeHtmlEntities);
@@ -1503,7 +1507,7 @@ class HtmlTag
 	{
 		if(!is_string($_html) || empty($_html))
 			return false;
-		$d = new DOMDocument('1.0','ISO-8859-1');
+		$d = new DOMDocument('1.0',HtmlTag::getEncoding());
 		/**
 		 * Suppression de tout espace de dbut et de fin
 		 */
@@ -1512,7 +1516,7 @@ class HtmlTag
 		 * On s'assure d'avoir un code commençant par <?xml ...
 		 */
 		if(strpos($html,'<?xml') !== 0 && strpos($html,'<?xml') <= 0)
-			$html = '<?xml version="1.0" encoding="ISO-8859-1"?>' . "\r\n" . $html;
+			$html = '<?xml version="1.0" encoding="' . HtmlTag::getEncoding() . '"?>' . "\r\n" . $html;
 		if($d->loadXML($html))
 			return $this->addChildren($d);
 		else
@@ -1547,7 +1551,7 @@ class HtmlTag
 	{
 		if(!is_string($_html) || empty($_html))
 			return false;
-		$d = new DOMDocument('1.0','ISO-8859-1');
+		$d = new DOMDocument('1.0',HtmlTag::getEncoding());
 		/**
 		 * Suppression de tout espace de dbut et de fin
 		 */
@@ -1556,7 +1560,7 @@ class HtmlTag
 		 * On s'assure d'avoir un code commençant par <?xml ...
 		 */
 		if(strpos($html,'<?xml') !== 0 && strpos($html,'<?xml') <= 0)
-			$html = '<?xml version="1.0" encoding="ISO-8859-1"?>' . "\r\n" . $html;
+			$html = '<?xml version="1.0" encoding="' . HtmlTag::getEncoding() . '"?>' . "\r\n" . $html;
 		if($d->loadXML($html))
 		{
 			if($d->hasChildNodes())
@@ -1645,14 +1649,8 @@ class HtmlTag
 				 * Si le noeud est un tag HTML reconnu
 				 * If the current node represents a known HTML tag
 				 */
-				if(($child instanceof DOMElement) && ($tag = HtmlTag::getHtmlTagFromDOMElement($child,false,false)))
-				{
+				if(($child instanceof DOMElement) && ($tag = HtmlTag::getHtmlTagFromDOMElement($child,true,false)))
 					$this->setValue($tag);
-					if($child->hasChildNodes() && $child->childNodes->length == 1 && in_array($childNodes->item(0)->nodeType,array(XML_TEXT_NODE,XML_ATTRIBUTE_CDATA,XML_ELEMENT_NODE)))
-						$tag->setValue(iconv('UTF-8','ISO-8859-1',$child->childNodes->item(0)->nodeValue));
-					else
-						$tag->addChildren($child);
-				}
 				/**
 				 * Sinon si le noeud est un commentaire
 				 * Otherwise the current node is a comment
@@ -1799,6 +1797,17 @@ class HtmlTag
 	public static function getDomDocument()
 	{
 		return HtmlTag::$domDocument;
+	}
+	/**
+	 * Méthode retournant l'encodage du document en cours
+	 * Méthod to get current document encoding
+	 * 
+	 * @uses HtmlTag::getDomDocument()
+	 * @return string
+	 */
+	public static function getEncoding()
+	{
+		return HtmlTag::getDomDocument()?HtmlTag::getDomDocument()->encoding:HtmlTag::DEFAULT_ENCODING;
 	}
 	/**
 	 * Méthode permettant de récupérer un objet de la classe HtmlTag par son id

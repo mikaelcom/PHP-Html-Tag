@@ -117,13 +117,14 @@ class HtmlTagScript extends HtmlTag
 	}
 	/**
 	 * Surcharge de la méthode car le code JS ne doit pas être encodé en entités HTML
+	 * Override method to ensure JS code is not HTML encoded
 	 * @see HtmlTag::_setValue()
 	 * 
 	 * @return bool true|false
 	 */
 	public function _setValue($_value)
 	{
-		return parent::_setValue(html_entity_decode($_value,ENT_QUOTES),false);
+		return parent::_setValue(is_string($_value)?html_entity_decode($_value,ENT_QUOTES,HtmlTag::getEncoding()):$_value,false);
 	}
 	/**
 	 * Méthode retournant le nom de la classe telle quelle

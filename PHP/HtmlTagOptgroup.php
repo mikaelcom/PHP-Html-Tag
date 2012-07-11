@@ -74,9 +74,9 @@ class HtmlTagOptgroup extends HtmlTag
 	 * @param HtmlTagOption
 	 * @return bool true|false
 	 */
-	public function setValue(HtmlTagOption $_option)
+	public function setValue($_option)
 	{
-		return parent::setValue($_option);
+		return ($_option instanceof HtmlTagOption)?parent::setValue($_option):false;
 	}
 	/**
 	 * Méthode retournant le nom du tag de la classe

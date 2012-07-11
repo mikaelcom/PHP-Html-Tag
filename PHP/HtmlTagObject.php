@@ -43,7 +43,7 @@ class HtmlTagObject extends HtmlTag
 	 * @param scalar valeur du paramètre / parameter value
 	 * @return bool true|false
 	 */
-	public function addParam($_paramName, $_paramValue)
+	public function addParam($_paramName,$_paramValue)
 	{
 		if(is_string($_paramName) && is_scalar($_paramValue))
 		{
@@ -61,9 +61,9 @@ class HtmlTagObject extends HtmlTag
 	 * @param HtmlTagParam
 	 * @return bool true|false
 	 */
-	public function setValue(HtmlTagParam $_param)
+	public function setValue($_param)
 	{
-		return parent::setValue($_param);
+		return (($_param instanceof HtmlTagParam) || ($_param instanceof HtmlTagEmbed) || ($_param instanceof HtmlTagObject))?parent::setValue($_param):false;
 	}
 	/**
 	 * Méthode retournant le nom du tag de la classe

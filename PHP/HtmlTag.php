@@ -106,13 +106,465 @@ class HtmlTag
 	 * Array containing all valid tag name
 	 * @var array
 	 */
-	private static $validTagsName = array('a'=>'','abbr'=>'','acronym'=>'','address'=>'','area'=>'','b'=>'','base'=>'','bdo'=>'','big'=>'','blockquote'=>'','body'=>'','br'=>'','button'=>'','caption'=>'','cite'=>'','code'=>'','col'=>'','colgroup'=>'','dd'=>'','del'=>'','dfn'=>'','div'=>'','dl'=>'','DOCTYPE'=>'','dt'=>'','em'=>'','fieldset'=>'','font'=>'','form'=>'','h1'=>'','h2'=>'','h3'=>'','h4'=>'','h5'=>'','h6'=>'','head'=>'','html'=>'','hr'=>'','i'=>'','img'=>'','input'=>'','ins'=>'','kbd'=>'','label'=>'','legend'=>'','li'=>'','link'=>'','list'=>'','map'=>'','meta'=>'','noscript'=>'','object'=>'','ol'=>'','optgroup'=>'','option'=>'','p'=>'','param'=>'','pre'=>'','q'=>'','samp'=>'','script'=>'','select'=>'','small'=>'','span'=>'','strong'=>'','style'=>'','sub'=>'','sup'=>'','table'=>'','tbody'=>'','td'=>'','textarea'=>'','tfoot'=>'','th'=>'','thead'=>'','title'=>'','tr'=>'','tt'=>'','ul'=>'','var'=>'');
+	private static $validTagsName = array(
+										'DOCTYPE'=>'',
+										'a'=>'',
+										'abbr'=>'',
+										'acronym'=>'',
+										'address'=>'',
+										'area'=>'',
+										'b'=>'',
+										'base'=>'',
+										'bdo'=>'',
+										'big'=>'',
+										'blockquote'=>'',
+										'body'=>'',
+										'br'=>'',
+										'button'=>'',
+										'caption'=>'',
+										'cite'=>'',
+										'code'=>'',
+										'col'=>'',
+										'colgroup'=>'',
+										'dd'=>'',
+										'del'=>'',
+										'dfn'=>'',
+										'div'=>'',
+										'dl'=>'',
+										'dt'=>'',
+										'em'=>'',
+										'embed'=>'',
+										'fieldset'=>'',
+										'font'=>'',
+										'form'=>'',
+										'frame'=>'',
+										'h1'=>'',
+										'h2'=>'',
+										'h3'=>'',
+										'h4'=>'',
+										'h5'=>'',
+										'h6'=>'',
+										'head'=>'',
+										'hr'=>'',
+										'html'=>'',
+										'i'=>'',
+										'iframe'=>'',
+										'img'=>'',
+										'input'=>'',
+										'ins'=>'',
+										'kbd'=>'',
+										'label'=>'',
+										'legend'=>'',
+										'li'=>'',
+										'link'=>'',
+										'list'=>'',
+										'map'=>'',
+										'meta'=>'',
+										'noscript'=>'',
+										'object'=>'',
+										'ol'=>'',
+										'optgroup'=>'',
+										'option'=>'',
+										'p'=>'',
+										'param'=>'',
+										'pre'=>'',
+										'q'=>'',
+										'samp'=>'',
+										'script'=>'',
+										'select'=>'',
+										'small'=>'',
+										'span'=>'',
+										'strong'=>'',
+										'style'=>'',
+										'sub'=>'',
+										'sup'=>'',
+										'table'=>'',
+										'tbody'=>'',
+										'td'=>'',
+										'textarea'=>'',
+										'tfoot'=>'',
+										'th'=>'',
+										'thead'=>'',
+										'title'=>'',
+										'tr'=>'',
+										'tt'=>'',
+										'u'=>'',
+										'ul'=>'',
+										'var'=>'');
 	/**
 	 * Tabelau des attributs html valides
 	 * Array containing all valid attributes and some specific
 	 * @var array
 	 */
-	private static $validAttributesName = array('abbr'=>'','about'=>'','accesskey'=>'','action'=>'','archive'=>'','alt'=>'','autocomplete'=>'','axis'=>'','charset'=>'','checked'=>'','cite'=>'','class'=>'','cols'=>'','colspan'=>'','content-length'=>'','content'=>'','coords'=>'','datatype'=>'','datetime'=>'','declare'=>'','defaultAction'=>'','dir'=>'','disabled'=>'','edit'=>'','enctype'=>'','encoding'=>'','event'=>'','for'=>'','full'=>'','handler'=>'','headers'=>'','height'=>'','href'=>'','hreflang'=>'','hrefmedia'=>'','hreftype'=>'','http-equiv'=>'','id'=>'','ismap'=>'','key'=>'','label'=>'','layout'=>'','lang'=>'','media'=>'','method'=>'','name'=>'','nextfocus'=>'','observer'=>'','onblur'=>'','onchange'=>'','onclick'=>'','onfocus'=>'','onkeypress'=>'','onkeyup'=>'','onkeydown'=>'','onmousedown'=>'','onmousemove'=>'','onmouseover'=>'','onmouseout'=>'','onmouseup'=>'','onsubmit'=>'','phase'=>'','prevfocus'=>'','propagate'=>'','property'=>'','rel'=>'','repeat-bind'=>'','repeat-model'=>'','repeat-nodeset'=>'','repeat-number'=>'','repeat-startindex'=>'','rev'=>'','readonly'=>'','role'=>'','rows'=>'','rowspan'=>'','scope'=>'','selected'=>'','shape'=>'','span'=>'','src'=>'','srctype'=>'','style'=>'','tabindex'=>'','target'=>'','targetid'=>'','targetrole'=>'','title'=>'','type'=>'','usemap'=>'','value'=>'','valuetype'=>'','version'=>'','width'=>'','xmlns'=>'','xml:base'=>'','xml:id'=>'','xml:lang'=>'','xsi:schemaLocation'=>'');
+	private static $validAttributesName = array(
+												'ATOMICSELECTION'=>'',
+												'abbr'=>'',
+												'about'=>'',
+												'accept'=>'',
+												'acceptCharset'=>'',
+												'accessKey'=>'',
+												'accesskey'=>'',
+												'action'=>'',
+												'activeElement'=>'',
+												'ActiveXObject'=>'',
+												'align'=>'',
+												'aLink'=>'',
+												'alinkColor'=>'',
+												'all'=>'',
+												'allowfullscreen'=>'',
+												'allowscriptaccess'=>'',
+												'allowTransparency'=>'',
+												'alt'=>'',
+												'altHtml'=>'',
+												'anchorNode'=>'',
+												'anchorOffset'=>'',
+												'anchors'=>'',
+												'applets'=>'',
+												'archive'=>'',
+												'async'=>'',
+												'attributes'=>'',
+												'autocomplete'=>'',
+												'autofocus'=>'',
+												'axis'=>'',
+												'background'=>'',
+												'balance'=>'',
+												'BaseHref'=>'',
+												'BGCOLOR'=>'',
+												'bgcolor'=>'',
+												'bgProperties'=>'',
+												'body'=>'',
+												'border'=>'',
+												'borderColor'=>'',
+												'borderColorDark'=>'',
+												'borderColorLight'=>'',
+												'bottom'=>'',
+												'bottomMargin'=>'',
+												'boundElements'=>'',
+												'browserLanguage'=>'',
+												'canHaveChildren'=>'',
+												'canHaveHTML'=>'',
+												'caption'=>'',
+												'cellIndex'=>'',
+												'cellPadding'=>'',
+												'cellpadding'=>'',
+												'cells'=>'',
+												'cellSpacing'=>'',
+												'cellspacing'=>'',
+												'ch'=>'',
+												'characterSet'=>'',
+												'charset'=>'',
+												'checked'=>'',
+												'children'=>'',
+												'chOff'=>'',
+												'cite'=>'',
+												'class'=>'',
+												'classid'=>'',
+												'className'=>'',
+												'clear'=>'',
+												'clientHeight'=>'',
+												'clientLeft'=>'',
+												'clientTop'=>'',
+												'clientWidth'=>'',
+												'color'=>'',
+												'cols'=>'',
+												'colSpan'=>'',
+												'colspan'=>'',
+												'compact'=>'',
+												'compatible'=>'',
+												'compatMode'=>'',
+												'complete'=>'',
+												'content'=>'',
+												'contentDocument'=>'',
+												'contentEditable'=>'',
+												'content-length'=>'',
+												'contentWindow'=>'',
+												'controlRange'=>'',
+												'cookie'=>'',
+												'coords'=>'',
+												'Count'=>'',
+												'customError'=>'',
+												'data'=>'',
+												'dataFld'=>'',
+												'dataFormatAs'=>'',
+												'dataPageSize'=>'',
+												'dataSrc'=>'',
+												'datatype'=>'',
+												'datetime'=>'',
+												'declare'=>'',
+												'defaultAction'=>'',
+												'defaultCharset'=>'',
+												'defaultChecked'=>'',
+												'defaultSelected'=>'',
+												'defaultValue'=>'',
+												'defaultView'=>'',
+												'defer'=>'',
+												'designMode'=>'',
+												'dir'=>'',
+												'disabled'=>'',
+												'doctype'=>'',
+												'document'=>'',
+												'documentElement'=>'',
+												'documentMode'=>'',
+												'domain'=>'',
+												'draggable'=>'',
+												'dropEffect'=>'',
+												'edit'=>'',
+												'effectAllowed'=>'',
+												'elements'=>'',
+												'embeds'=>'',
+												'encoding'=>'',
+												'enctype'=>'',
+												'event'=>'',
+												'face'=>'',
+												'fgColor'=>'',
+												'FieldDelim'=>'',
+												'fileCreatedDate'=>'',
+												'fileModifiedDate'=>'',
+												'files'=>'',
+												'fileSize'=>'',
+												'fileUpdatedDate'=>'',
+												'flashvars'=>'',
+												'focusNode'=>'',
+												'focusOffset'=>'',
+												'for'=>'',
+												'form'=>'',
+												'formAction'=>'',
+												'formEnctype'=>'',
+												'formMethod'=>'',
+												'formNoValidate'=>'',
+												'forms'=>'',
+												'formTarget'=>'',
+												'frame'=>'',
+												'frameBorder'=>'',
+												'frameElement'=>'',
+												'frames'=>'',
+												'frameSpacing'=>'',
+												'full'=>'',
+												'handler'=>'',
+												'head'=>'',
+												'headers'=>'',
+												'headers'=>'',
+												'height'=>'',
+												'hidden'=>'',
+												'hideFocus'=>'',
+												'href'=>'',
+												'hreflang'=>'',
+												'hrefmedia'=>'',
+												'hreftype'=>'',
+												'hspace'=>'',
+												'htmlFor'=>'',
+												'httpEquiv'=>'',
+												'http-equiv'=>'',
+												'id'=>'',
+												'id'=>'',
+												'images'=>'',
+												'implementation'=>'',
+												'indeterminate'=>'',
+												'index'=>'',
+												'innerHTML'=>'',
+												'innerText'=>'',
+												'isCollapsed'=>'',
+												'isContentEditable'=>'',
+												'isDisabled'=>'',
+												'isMap'=>'',
+												'ismap'=>'',
+												'isMultiLine'=>'',
+												'isOpen'=>'',
+												'key'=>'',
+												'label'=>'',
+												'label'=>'',
+												'lang'=>'',
+												'lang'=>'',
+												'language'=>'',
+												'lastModified'=>'',
+												'layout'=>'',
+												'leftMargin'=>'',
+												'length'=>'',
+												'link'=>'',
+												'linkColor'=>'',
+												'links'=>'',
+												'list'=>'',
+												'longDesc'=>'',
+												'loop'=>'',
+												'lowsrc'=>'',
+												'marginHeight'=>'',
+												'marginWidth'=>'',
+												'max'=>'',
+												'maxConnectionsPerServer'=>'',
+												'maxLength'=>'',
+												'maxlength'=>'',
+												'media'=>'',
+												'method'=>'',
+												'Methods'=>'',
+												'min'=>'',
+												'minlength'=>'',
+												'msHidden'=>'',
+												'msVisibilityState'=>'',
+												'multiple'=>'',
+												'name'=>'',
+												'naturalHeight'=>'',
+												'naturalWidth'=>'',
+												'nextfocus'=>'',
+												'noHref'=>'',
+												'noResize'=>'',
+												'noShade'=>'',
+												'noValidate'=>'',
+												'noWrap'=>'',
+												'object'=>'',
+												'observer'=>'',
+												'offscreenBuffering'=>'',
+												'offsetHeight'=>'',
+												'offsetLeft'=>'',
+												'offsetParent'=>'',
+												'offsetTop'=>'',
+												'offsetWidth'=>'',
+												'onblur'=>'',
+												'onchange'=>'',
+												'onclick'=>'',
+												'onfocus'=>'',
+												'onkeydown'=>'',
+												'onkeypress'=>'',
+												'onkeyup'=>'',
+												'onLine'=>'',
+												'onmousedown'=>'',
+												'onmousemove'=>'',
+												'onmouseout'=>'',
+												'onmouseover'=>'',
+												'onmouseup'=>'',
+												'onsubmit'=>'',
+												'options'=>'',
+												'outerHTML'=>'',
+												'outerText'=>'',
+												'palette'=>'',
+												'parentWindow'=>'',
+												'pathname'=>'',
+												'pattern'=>'',
+												'patternMismatch'=>'',
+												'phase'=>'',
+												'placeholder'=>'',
+												'pluginspace'=>'',
+												'pluginspage'=>'',
+												'position'=>'',
+												'prevfocus'=>'',
+												'propagate'=>'',
+												'property'=>'',
+												'rangeCount'=>'',
+												'rangeOverflow'=>'',
+												'rangeUnderflow'=>'',
+												'readOnly'=>'',
+												'readonly'=>'',
+												'readyState'=>'',
+												'referrer'=>'',
+												'rel'=>'',
+												'repeat-bind'=>'',
+												'repeat-model'=>'',
+												'repeat-nodeset'=>'',
+												'repeat-number'=>'',
+												'repeat-startindex'=>'',
+												'required'=>'',
+												'rev'=>'',
+												'rightMargin'=>'',
+												'role'=>'',
+												'rowIndex'=>'',
+												'rows'=>'',
+												'rowSpan'=>'',
+												'rowspan'=>'',
+												'rules'=>'',
+												'sandbox'=>'',
+												'scheme'=>'',
+												'scope'=>'',
+												'screenLeft'=>'',
+												'screenTop'=>'',
+												'scripts'=>'',
+												'scroll'=>'',
+												'scrollHeight'=>'',
+												'scrolling'=>'',
+												'scrollLeft'=>'',
+												'scrollTop'=>'',
+												'scrollWidth'=>'',
+												'sectionRowIndex'=>'',
+												'SECURITY'=>'',
+												'selected'=>'',
+												'selected'=>'',
+												'selectedIndex'=>'',
+												'selectionEnd'=>'',
+												'selectionStart'=>'',
+												'self'=>'',
+												'shape'=>'',
+												'size'=>'',
+												'sourceIndex'=>'',
+												'span'=>'',
+												'specified'=>'',
+												'spellcheck'=>'',
+												'src'=>'',
+												'srctype'=>'',
+												'standby'=>'',
+												'start'=>'',
+												'status'=>'',
+												'step'=>'',
+												'stepMismatch'=>'',
+												'STYLE'=>'',
+												'style'=>'',
+												'summary'=>'',
+												'tabIndex'=>'',
+												'tabindex'=>'',
+												'tabStop'=>'',
+												'tagName'=>'',
+												'tagUrn'=>'',
+												'target'=>'',
+												'target'=>'',
+												'targetid'=>'',
+												'targetrole'=>'',
+												'tBodies'=>'',
+												'text'=>'',
+												'tFoot'=>'',
+												'tHead'=>'',
+												'title'=>'',
+												'tooLong'=>'',
+												'top'=>'',
+												'topMargin'=>'',
+												'type'=>'',
+												'type'=>'',
+												'typeMismatch'=>'',
+												'uniqueID'=>'',
+												'uniqueNumber'=>'',
+												'units'=>'',
+												'URL'=>'',
+												'url'=>'',
+												'URLUnencoded'=>'',
+												'urn'=>'',
+												'useMap'=>'',
+												'usemap'=>'',
+												'userAgent'=>'',
+												'valid'=>'',
+												'validationMessage'=>'',
+												'validity'=>'',
+												'vAlign'=>'',
+												'value'=>'',
+												'valueAsNumber'=>'',
+												'valueMissing'=>'',
+												'valueType'=>'',
+												'valuetype'=>'',
+												'vcard_name'=>'',
+												'version'=>'',
+												'version'=>'',
+												'viewLink'=>'',
+												'viewMasterTab'=>'',
+												'vLink'=>'',
+												'vlinkColor'=>'',
+												'volume'=>'',
+												'vrml'=>'',
+												'vspace'=>'',
+												'width'=>'',
+												'width'=>'',
+												'willValidate'=>'',
+												'wmode'=>'',
+												'wrap'=>'',
+												'xml:base'=>'',
+												'xml:id'=>'',
+												'xml:lang'=>'',
+												'xmlns'=>'',
+												'xsi:schemaLocation'=>'');
 	/**
 	 * Constructeur de la classe / Class constructor
 	 *
@@ -130,9 +582,10 @@ class HtmlTag
 	 * @param string lang du document / document language
 	 * @param string encodage du document / document encoding
 	 * @param string reset du domDocument / allows to reset the DOMDocument and the root HTML element 
+	 * @param DOMDocumentType
 	 * @return HtmlTag
 	 */
-	public function __construct($_tagName,$_lang = null,$_encoding = HtmlTag::DEFAULT_ENCODING,$_reset = false)
+	public function __construct($_tagName,$_lang = null,$_encoding = HtmlTag::DEFAULT_ENCODING,$_reset = false,$_doctype = null)
 	{
 		/**
 		 * Initialisation dans tous les cas du DOMDocument
@@ -143,8 +596,9 @@ class HtmlTag
 			 * Création du document général
 			 * DOMDocument creation
 			 */
-			$doctype = DOMImplementation::createDocumentType(HtmlTag::DOCTYPE_ROOT_TAG,HtmlTag::DOCTYPE_DEFINITION,HtmlTag::DOCTYPE_URL);
-			HtmlTag::$domDocument = DOMImplementation::createDocument(null,null,$doctype);
+			$domImplementation = new DOMImplementation();
+			$doctype = ($_doctype instanceof DOMDocumentType)?$domImplementation->createDocumentType($_doctype->name,$_doctype->publicId,$_doctype->systemId):$domImplementation->createDocumentType(HtmlTag::DOCTYPE_ROOT_TAG,HtmlTag::DOCTYPE_DEFINITION,HtmlTag::DOCTYPE_URL);
+			HtmlTag::$domDocument = $domImplementation->createDocument(null,null,$doctype);
 			HtmlTag::$domDocument->preserveWhiteSpace = false;
 			HtmlTag::$domDocument->formatOutput = true;
 			HtmlTag::$domDocument->substituteEntities = true;
@@ -198,7 +652,9 @@ class HtmlTag
 	{
 		if(trim($_fileContent) != '')
 		{
-			$fileContent = str_replace(array('&','&amp;amp;'),'&amp;',trim($_fileContent));
+			$fileContent = str_replace(array(
+											'&',
+											'&amp;amp;'),'&amp;',trim($_fileContent));
 			if(strpos($fileContent,'<?xml') !== 0 && strpos($fileContent,'<?xml') <= 0)
 				$fileContent = '<?xml version="1.0" encoding="' . $_encodingDocument . '"?>' . "\r\n" . $fileContent;
 			if(!empty($fileContent))
@@ -211,7 +667,20 @@ class HtmlTag
 						HtmlTag::$domDocument = null;
 						HtmlTag::$htmlDocument = null;
 						HtmlTag::$declaredIds = array();
-						new HtmlTag('',null,$_encodingDocument);
+						/**
+						 * On tente de récupére la langue déclarer sur la balise html
+						 * We try to get the language defined on the html tag
+						 */
+						$lang = null;
+						if($domDocument->getElementsByTagName('html')->length)
+						{
+							$html = $domDocument->getElementsByTagName('html')->item(0);
+							if($html->hasAttribute('xml:lang'))
+								$lang = $html->getAttribute('xml:lang');
+							elseif($html->hasAttribute('xml:lang'))
+								$lang = $html->getAttribute('lang');
+						}
+						new HtmlTag('',$lang,$_encodingDocument,$_resetDomDocument,$domDocument->doctype);
 					}
 					/**
 					 * Tentative de récupération de la partie head
@@ -451,13 +920,19 @@ class HtmlTag
 	public static function &createTag($_tagName,array $_tagAttributes = array(),$_tagType = null,$_addTagTo = null)
 	{
 		$htmlTagObject = null;
-		if(is_string($_tagName) && class_exists(HtmlTag::__className() . ucfirst(strtolower($_tagName))))
+		if(is_string($_tagName))
 		{
-			$htmlTagObjectName = HtmlTag::__className() . ucfirst(strtolower($_tagName));
-			if(isset($_tagType) && is_scalar($_tagType) && !empty($_tagType))
-				$htmlTagObject = new $htmlTagObjectName($_tagType);
+			$_tagName = trim($_tagName);
+			if(class_exists(HtmlTag::__className() . ucfirst(strtolower($_tagName))))
+			{
+				$htmlTagObjectName = HtmlTag::__className() . ucfirst(strtolower($_tagName));
+				if(isset($_tagType) && is_scalar($_tagType) && !empty($_tagType))
+					$htmlTagObject = new $htmlTagObjectName($_tagType);
+				else
+					$htmlTagObject = new $htmlTagObjectName();
+			}
 			else
-				$htmlTagObject = new $htmlTagObjectName();
+				$htmlTagObject = new HtmlTag($_tagName);
 			if($htmlTagObject->getTagName() == $_tagName)
 			{
 				if(count($_tagAttributes) > 0)
@@ -465,8 +940,6 @@ class HtmlTag
 				if($htmlTagObject->getDomElement() && ($_addTagTo instanceof HtmlTag))
 					$_addTagTo->setValue($htmlTagObject);
 			}
-			else
-				$htmlTagObject = null;
 		}
 		return $htmlTagObject;
 	}
@@ -506,7 +979,9 @@ class HtmlTag
 		{
 			if($_sendHeader && !headers_sent())
 				header('Content-Type: application/xhtml+xml');
-			return '<?xml version="1.0" encoding="' . HtmlTag::getEncoding() . '"?>' . "\r\n" . str_replace(array('&','&amp;amp;'),'&amp;',$this->toHtml(false));
+			return '<?xml version="1.0" encoding="' . HtmlTag::getEncoding() . '"?>' . "\r\n" . str_replace(array(
+																												'&',
+																												'&amp;amp;'),'&amp;',$this->toHtml(false));
 		}
 		else
 			return '';
@@ -553,7 +1028,9 @@ class HtmlTag
 		{
 			if($_sendHeader && !headers_sent())
 				header('Content-Type: application/xhtml+xml');
-			return str_replace(array('&','&amp;amp;'),'&amp;',HtmlTag::displayFullHtml(false));
+			return str_replace(array(
+									'&',
+									'&amp;amp;'),'&amp;',HtmlTag::displayFullHtml(false));
 		}
 		else
 			return '';
@@ -618,7 +1095,34 @@ class HtmlTag
 				}
 			}
 			else
-				$attributeValue = $_attributeValue;
+			{
+				switch($_attributeName)
+				{
+					case 'href':
+					case 'src':
+						$attributeValue = trim(str_replace(array(
+																'%2F',
+																/*'%2B',*/
+																'%23',
+																'%3A',
+																'%3F',
+																'%3D',
+																'%3B',
+																'%26'),array(
+																			'/',
+																			/*'+',*/
+																			'#',
+																			':',
+																			'?',
+																			'=',
+																			'&amp;',
+																			'&amp;'),rawurlencode(rawurldecode($_attributeValue))));
+						break;
+					default:
+						$attributeValue = $_attributeValue;
+						break;
+				}
+			}
 			/**
 			 * Appel de la méthode propre à l'attribut si existante
 			 * et si cette méthode n'est pas appelée depuis la méthode propre à l'attribut
@@ -1317,8 +1821,11 @@ class HtmlTag
 			case 'DOCTYPE':
 			case 'dt':
 			case 'em':
+			case 'embed':
 			case 'fieldset':
+			case 'font':
 			case 'form':
+			case 'frame':
 			case 'h1':
 			case 'h2':
 			case 'h3':
@@ -1328,6 +1835,7 @@ class HtmlTag
 			case 'head':
 			case 'html':
 			case 'i':
+			case 'iframe':
 			case 'ins':
 			case 'kbd':
 			case 'label':
@@ -1362,6 +1870,7 @@ class HtmlTag
 			case 'tr':
 			case 'tt':
 			case 'ul':
+			case 'u':
 			case 'samp':
 			case 'var':
 				$this->setHasInnerHtml(true);
@@ -1399,14 +1908,14 @@ class HtmlTag
 		return (is_string($_attributeName) && array_key_exists($_attributeName,HtmlTag::getValidAttributesName()));
 	}
 	/**
-	 * Méthode permettant de déclarer des attributs HTML valides en plus de ceux par défaut
-	 * Method to add valid/specific attribute names
+	 * Méthode permettant de déclarer un attribut HTML valide en plus de ceux par défaut
+	 * Method to add valid/specific attribute name
 	 * 
-	 * @param string nom de l'attribute
+	 * @param string nom de l'attribut
 	 */
-	protected function addValidAttribute($_attributeName)
+	public static function addValidAttribute($_attributeName)
 	{
-		return (is_string($_attributeName) && (HtmlTag::$validAttributesName[$_attributeName] = ''));
+		return (is_string($_attributeName) && (HtmlTag::$validAttributesName[$_attributeName] = array_key_exists($_attributeName,HtmlTag::getValidAttributesName())?'':'custom'));
 	}
 	/**
 	 * Retourne la liste des tags HTML valides
@@ -1429,6 +1938,16 @@ class HtmlTag
 	public static function tagIsValid($_tagName)
 	{
 		return (is_string($_tagName) && array_key_exists(strtolower($_tagName),HtmlTag::getValidTagsName()));
+	}
+	/**
+	 * Méthode permettant de déclarer un tag HTML valide en plus de ceux par défaut
+	 * Method to add valid/specific tag name
+	 * 
+	 * @param string nom du tag
+	 */
+	public static function addValidTag($_tagName)
+	{
+		return (is_string($_tagName) && (HtmlTag::$validTagsName[$_tagName] = array_key_exists($_tagName,HtmlTag::getValidTagsName())?'':'custom'));
 	}
 	/**
 	 * Méthode générale d'ajaout de définition de la valeur de l'objet ou d'ajout d'une valeur
@@ -1463,7 +1982,7 @@ class HtmlTag
 		{
 			if(is_scalar($_value) && $this->getValueAttribute() != '')
 				$this->addAttribute($this->getValueAttribute(),$_encodeHtmlEntities?htmlentities($_value,ENT_QUOTES,HtmlTag::getEncoding(),false):$_value,true);
-			elseif(is_scalar($_value) && !empty($_value) && $this->getHasInnerHtml() && $this->getDomElement())
+			elseif(is_scalar($_value) && $_value != '' && $this->getHasInnerHtml() && $this->getDomElement())
 				$this->getDomElement()->appendChild(HtmlTag::$domDocument->createTextNode($_encodeHtmlEntities?htmlentities($_value === ' '?'&nbsp;':$_value,ENT_QUOTES,HtmlTag::getEncoding(),false):$_value));
 			elseif(($_value instanceof HtmlTag) && $this->getDomElement())
 				$this->getDomElement()->appendChild($_value->getDomElement());
@@ -1511,7 +2030,9 @@ class HtmlTag
 		/**
 		 * Suppression de tout espace de dbut et de fin
 		 */
-		$html = str_replace(array('&','&amp;amp;'),'&amp;',trim($_html));
+		$html = str_replace(array(
+								'&',
+								'&amp;amp;'),'&amp;',trim($_html));
 		/**
 		 * On s'assure d'avoir un code commençant par <?xml ...
 		 */
@@ -1555,7 +2076,9 @@ class HtmlTag
 		/**
 		 * Suppression de tout espace de dbut et de fin
 		 */
-		$html = str_replace(array('&','&amp;amp;'),'&amp;',trim($_html));
+		$html = str_replace(array(
+								'&',
+								'&amp;amp;'),'&amp;',trim($_html));
 		/**
 		 * On s'assure d'avoir un code commençant par <?xml ...
 		 */
@@ -1655,7 +2178,7 @@ class HtmlTag
 				 * Sinon si le noeud est un commentaire
 				 * Otherwise the current node is a comment
 				 */
-				elseif(HTML_TAG_KEEP_COMMENTS == true && ($child instanceof DOMComment) && trim($child->data) != '')
+				elseif($this->keepComments() && ($child instanceof DOMComment) && trim($child->data) != '')
 					$this->setValue($child);
 				/**
 				 * Sinon si le noeud est un texte non vide
@@ -1923,12 +2446,17 @@ class HtmlTag
 							 * Noeud en cours
 							 */
 							$valid = false;
-							if(is_scalar($_attributeName) && $_domElement->hasAttribute($_attributeName) && in_array($_value,array('*',$_domElement->getAttribute($_attributeName))))
+							if(is_scalar($_attributeName) && $_domElement->hasAttribute($_attributeName) && in_array($_value,array(
+																																	'*',
+																																	$_domElement->getAttribute($_attributeName))))
 								$valid = true;
 							elseif(is_array($_attributeName))
 							{
 								foreach($_attributeName as $attributeName=>$attributeValue)
-									$valid |= ($_domElement->hasAttribute($attributeName) && in_array($attributeValue,array($_value,'*',$_domElement->getAttribute($attributeName))));
+									$valid |= ($_domElement->hasAttribute($attributeName) && in_array($attributeValue,array(
+																															$_value,
+																															'*',
+																															$_domElement->getAttribute($attributeName))));
 							}
 							if($valid)
 								$_multiples[] = HtmlTag::getHtmlTagFromDOMElement($_domElement);
@@ -1936,12 +2464,17 @@ class HtmlTag
 							 * Noeud enfant
 							 */
 							$valid = false;
-							if(is_scalar($_attributeName) && $childNodes->item($i)->hasAttribute($_attributeName) && in_array($_value,array('*',$childNodes->item($i)->getAttribute($_attributeName))))
+							if(is_scalar($_attributeName) && $childNodes->item($i)->hasAttribute($_attributeName) && in_array($_value,array(
+																																			'*',
+																																			$childNodes->item($i)->getAttribute($_attributeName))))
 								$valid = true;
 							elseif(is_array($_attributeName))
 							{
 								foreach($_attributeName as $attributeName=>$attributeValue)
-									$valid |= ($childNodes->item($i)->hasAttribute($attributeName) && in_array($attributeValue,array($_value,'*',$childNodes->item($i)->getAttribute($attributeName))));
+									$valid |= ($childNodes->item($i)->hasAttribute($attributeName) && in_array($attributeValue,array(
+																																	$_value,
+																																	'*',
+																																	$childNodes->item($i)->getAttribute($attributeName))));
 							}
 							if($valid)
 								$_multiples[] = HtmlTag::getHtmlTagFromDOMElement($childNodes->item($i));
@@ -2003,8 +2536,11 @@ class HtmlTag
 			case 'DOCTYPE':
 			case 'dt':
 			case 'em':
+			case 'embed':
 			case 'fieldset':
+			case 'font':
 			case 'form':
+			case 'frame':
 			case 'h1':
 			case 'h2':
 			case 'h3':
@@ -2014,6 +2550,7 @@ class HtmlTag
 			case 'head':
 			case 'html':
 			case 'i':
+			case 'iframe':
 			case 'ins':
 			case 'kbd':
 			case 'label':
@@ -2046,6 +2583,7 @@ class HtmlTag
 			case 'title':
 			case 'tr':
 			case 'tt':
+			case 'u':
 			case 'ul':
 			case 'samp':
 			case 'var':
@@ -2099,6 +2637,16 @@ class HtmlTag
 		catch(Exception $e)
 		{}
 		return '';
+	}
+	/**
+	 * Méthode permettant de savoir s'il faut conserver les commentaires, peut être surchargée par certaines classes
+	 * Method to check if comment must be kpet or not, can be override by some classes
+	 * 
+	 * @return bool true|false
+	 */
+	protected function keepComments()
+	{
+		return (defined('HTML_TAG_KEEP_COMMENTS') && HTML_TAG_KEEP_COMMENTS === true);
 	}
 	/**
 	 * Méthode retournant le nom de la classe telle quelle

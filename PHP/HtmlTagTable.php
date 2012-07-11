@@ -77,6 +77,52 @@ class HtmlTagTable extends HtmlTag
 		return $this->addvalue($_thead);
 	}
 	/**
+	 * Méthode de définition de la valeur du cellpadding
+	 * Method to set cellpadding attribute
+	 * 
+	 * @uses Htmltag::addAttribute()
+	 * @param int valeur
+	 * @return bool true|false
+	 */
+	public function setCellpadding($_cellpadding)
+	{
+		return $this->addAttribute('cellpadding',intval($_cellpadding),true);
+	}
+	/**
+	 * Méthode permettant de supprimer l'attribut cellpadding
+	 * Method to unset cellpadding attribute
+	 * 
+	 * @uses Htmltag::unsetAttribute()
+	 * @return bool true|false
+	 */
+	public function unsetCellpadding()
+	{
+		return $this->unsetAttribute('cellpadding');
+	}
+	/**
+	 * Méthode de définition de la valeur du cellspacing
+	 * Method to set cellspacing attribute
+	 * 
+	 * @uses Htmltag::addAttribute()
+	 * @param int valeur
+	 * @return bool true|false
+	 */
+	public function setCellspacing($_cellspacing)
+	{
+		return $this->addAttribute('cellspacing',intval($_cellspacing),true);
+	}
+	/**
+	 * Méthode permettant de supprimer l'attribut cellspacing
+	 * Method to unset cellspacing attribute
+	 * 
+	 * @uses Htmltag::unsetAttribute()
+	 * @return bool true|false
+	 */
+	public function unsetCellspacing()
+	{
+		return $this->unsetAttribute('cellspacing');
+	}
+	/**
 	 * Méthode retournant le nom du tag de la classe
 	 * Method returning the tag name
 	 *

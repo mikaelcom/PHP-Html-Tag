@@ -42,7 +42,7 @@ class HtmlTagA extends HtmlTag
 	 */
 	public function setHref($_href)
 	{
-		return $this->addAttribute('href',trim($_href),true);
+		return $this->addAttribute('href',$_href,true);
 	}
 	/**
 	 * Méthode permettant de récupérer l'attribut 'href' de l'élément HtmlTag

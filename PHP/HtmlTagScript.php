@@ -120,11 +120,23 @@ class HtmlTagScript extends HtmlTag
 	 * Override method to ensure JS code is not HTML encoded
 	 * @see HtmlTag::_setValue()
 	 * 
+	 * @param mixed|HtmlTag
+	 * @param bool indique s'il faut ou non encoder les données / indicates if the data has to be html encoded
 	 * @return bool true|false
 	 */
-	public function _setValue($_value)
+	public function _setValue($_value,$_encodeHtmlEntities = true)
 	{
-		return parent::_setValue(is_string($_value)?html_entity_decode($_value,ENT_QUOTES,HtmlTag::getEncoding()):$_value,false);
+		return parent::_setValue(is_string($_value)?html_entity_decode($_value,ENT_QUOTES,HtmlTag::getEncoding()):$_value,$_encodeHtmlEntities && false);
+	}
+	/**
+	 * Surcharge de la méthode afin de conserver les commentaires dans le cas de code JS
+	 * @see HtmlTag::keepComments()
+	 * 
+	 * @return bool true
+	 */
+	protected function keepComments()
+	{
+		return true;
 	}
 	/**
 	 * Méthode retournant le nom de la classe telle quelle

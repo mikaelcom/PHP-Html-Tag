@@ -53,7 +53,7 @@ class HtmlTagSelect extends HtmlTag
 	 * @param mixed
 	 * @param array
 	 */
-	public function createOption($_content, array $_attributes = array())
+	public function createOption($_content,array $_attributes = array())
 	{
 		$htmlSelectOption = new HtmlTagOption();
 		$htmlSelectOption->setValue($_content);
@@ -69,7 +69,7 @@ class HtmlTagSelect extends HtmlTag
 	 * @param HtmlTagOption|HtmlTagOptgroup
 	 * @return bool true|false
 	 */
-	public function setValue(HtmlTag $_option)
+	public function setValue($_option)
 	{
 		return (($_option instanceof HtmlTagOptgroup) || ($_option instanceof HtmlTagOption))?parent::setValue($_option):false;
 	}

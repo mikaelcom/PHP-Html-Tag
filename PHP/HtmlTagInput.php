@@ -72,6 +72,21 @@ class HtmlTagInput extends HtmlTag
 	 */
 	const RESET = 'reset';
 	/**
+	 * Nom du type tel
+	 * @var string
+	 */
+	const TEL = 'tel';
+	/**
+	 * Nom du type email
+	 * @var string
+	 */
+	const EMAIL = 'email';
+	/**
+	 * Nom du type number
+	 * @var string
+	 */
+	const NUMBER = 'number';
+	/**
 	 * Constructeur de la classe / Class constructor
 	 * @see parent::__construct()
 	 * 

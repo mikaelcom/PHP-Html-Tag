@@ -54,9 +54,9 @@ class HtmlTagMap extends HtmlTag
 	 * @param HtmlTagArea
 	 * @return bool true|false
 	 */
-	public function setValue(HtmlTagArea $_area)
+	public function setValue($_area)
 	{
-		return parent::setValue($_area);
+		return ($_area instanceof HtmlTagArea)?parent::setValue($_area):false;
 	}
 	/**
 	 * Méthode retournant le nom du tag de la classe
